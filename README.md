@@ -4,6 +4,15 @@ Sitio web de DAFERCOL SCG SAS construido con [Astro](https://astro.build) 5. Es 
 no necesita servidor ni base de datos y se puede publicar en Netlify, Vercel, Cloudflare Pages o
 cualquier hosting de archivos estáticos.
 
+## Repositorio y despliegue
+
+- **Código:** https://github.com/Dafercol/Dafercol-web (cuenta de GitHub de DAFERCOL).
+- **Publicación:** proyecto `dafercol` en Vercel, conectado a este repositorio. Cada cambio
+  que entra a `main` se publica solo en https://dafercol.vercel.app; las demás ramas y los
+  pull requests generan una vista previa.
+- **Flujo de trabajo:** los cambios se hacen en una rama, se abre un pull request contra
+  `main` y se fusiona cuando la vista previa está revisada.
+
 ## Requisitos
 
 - Node.js 20.3 o superior (probado con 20.18). Si actualizas a Node 22 puedes migrar a Astro 6.
@@ -138,7 +147,7 @@ El script vive en `scripts/catalogo/build.mjs` y necesita Google Chrome (o
 
 - [x] WhatsApp y teléfono reales en `src/data/site.ts` (+57 311 210 9248, confirmado el 3-nov-2026).
 - [ ] Dirección, correo y horario reales en `src/data/site.ts` (la dirección se oculta mientras sea de plantilla).
-- [ ] Cuando www.dafercol.com apunte a Vercel: definir `SITE_URL=https://www.dafercol.com` (Vercel → Settings → Environment Variables, o `.env`), volver a generar el catálogo y publicar. Hoy todo usa `https://defercol.vercel.app` (ver `astro.config.mjs`).
+- [ ] Cuando www.dafercol.com apunte a Vercel: definir `SITE_URL=https://www.dafercol.com` (Vercel → Settings → Environment Variables, o `.env`), volver a generar el catálogo y publicar. Hoy todo usa `https://dafercol.vercel.app` (ver `astro.config.mjs`).
 - [ ] Regenerar el catálogo con `npm run catalogo` cuando estén los datos de contacto reales.
 - [ ] Reemplazar los productos de ejemplo por los reales y agregar sus imágenes.
 - [ ] Ajustar los textos de "Quiénes somos".

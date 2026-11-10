@@ -11,7 +11,7 @@ import { loadEnv } from 'vite';
   Environment Variables) o en .env, y vuelve a generar el catálogo.
 */
 const env = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '');
-const SITE_URL = (process.env.SITE_URL || env.SITE_URL || 'https://defercol.vercel.app').replace(/\/+$/, '');
+const SITE_URL = (process.env.SITE_URL || env.SITE_URL || 'https://dafercol.vercel.app').replace(/\/+$/, '');
 
 // https://astro.build/config
 export default defineConfig({

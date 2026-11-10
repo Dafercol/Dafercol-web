@@ -6,7 +6,7 @@
  * URL pública: la fija `site` en astro.config.mjs (variable SITE_URL). El respaldo
  * es el despliegue actual en Vercel; www.dafercol.com aún no apunta al proyecto.
  */
-const SITE_URL = String(import.meta.env.SITE || 'https://defercol.vercel.app').replace(/\/+$/, '');
+const SITE_URL = String(import.meta.env.SITE || 'https://dafercol.vercel.app').replace(/\/+$/, '');
 
 export const site = {
   // Nombre y razón social según el Manual de Marca DAFERCOL v1.0 (assets/marca/).

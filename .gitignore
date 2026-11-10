@@ -24,3 +24,8 @@ assets/videos/brand-film/dafercol-brand-film-4k.mp4
 
 # configuración local de Claude Code
 .claude/settings.local.json
+
+# skills de agentes de IA instaladas en local (herramientas de trabajo, no parte del sitio)
+.agents/
+.claude/skills/
+skills-lock.json

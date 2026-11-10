@@ -48,7 +48,6 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const WORK = path.join(ROOT, 'node_modules/.cache/dafercol-catalogo');
 const THUMBS = path.join(WORK, 'thumbs');
 const OUT_PDF = path.join(ROOT, 'public/catalogo/catalogo-dafercol.pdf');
-const OLD_PDF = path.join(ROOT, 'public/catalogo/catalogo-defercol.pdf'); // nombre anterior al manual de marca
 const FONTS = path.join(ROOT, 'public/fonts');
 const LOGOS = path.join(ROOT, 'public/marca');
 const OUT_COVER = path.join(ROOT, 'public/catalogo/portada.webp');
@@ -584,7 +583,6 @@ async function main() {
   });
   await mkdir(path.dirname(OUT_PDF), { recursive: true });
   await copyFile(tmpPdf, OUT_PDF);
-  await rm(OLD_PDF, { force: true });
 
   // Portada para la página /catalogo (A4 a 2x → 1240 px de ancho en WebP)
   const shot = path.join(WORK, 'portada.png');
