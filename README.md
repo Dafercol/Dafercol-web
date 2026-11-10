@@ -7,9 +7,14 @@ cualquier hosting de archivos estáticos.
 ## Repositorio y despliegue
 
 - **Código:** https://github.com/Dafercol/Dafercol-web (cuenta de GitHub de DAFERCOL).
-- **Publicación:** proyecto `dafercol` en Vercel, conectado a este repositorio. Cada cambio
-  que entra a `main` se publica solo en https://dafercol.vercel.app; las demás ramas y los
-  pull requests generan una vista previa.
+- **Publicación:** proyecto `dafercol-web` en Vercel, conectado a este repositorio. Cada
+  cambio que entra a `main` se publica solo en https://www.dafercol.com (también responde en
+  https://dafercol-web.vercel.app); las demás ramas y los pull requests generan una vista previa.
+- **Dominio:** `dafercol.com` está registrado en mi.com.co y sus DNS se quedan ahí porque el
+  correo también vive allá (MX, SPF, IMAP, SMTP). Para Vercel solo hay dos registros: `A @`
+  → `216.198.79.1` y `CNAME www` → `11de7b30a9979754.vercel-dns-017.com`. `dafercol.com`
+  redirige (308) a `www.dafercol.com`. No cambiar los nameservers a Vercel sin migrar antes
+  los registros del correo.
 - **Flujo de trabajo:** los cambios se hacen en una rama, se abre un pull request contra
   `main` y se fusiona cuando la vista previa está revisada.
 
@@ -147,7 +152,7 @@ El script vive en `scripts/catalogo/build.mjs` y necesita Google Chrome (o
 
 - [x] WhatsApp y teléfono reales en `src/data/site.ts` (+57 311 210 9248, confirmado el 3-nov-2026).
 - [ ] Dirección, correo y horario reales en `src/data/site.ts` (la dirección se oculta mientras sea de plantilla).
-- [ ] Cuando www.dafercol.com apunte a Vercel: definir `SITE_URL=https://www.dafercol.com` (Vercel → Settings → Environment Variables, o `.env`), volver a generar el catálogo y publicar. Hoy todo usa `https://dafercol.vercel.app` (ver `astro.config.mjs`).
+- [x] Dominio www.dafercol.com conectado a Vercel; el sitio y el catálogo usan esa URL (9-nov-2026).
 - [ ] Regenerar el catálogo con `npm run catalogo` cuando estén los datos de contacto reales.
 - [ ] Reemplazar los productos de ejemplo por los reales y agregar sus imágenes.
 - [ ] Ajustar los textos de "Quiénes somos".

@@ -6,12 +6,12 @@ import { loadEnv } from 'vite';
 /*
   URL pública del sitio: canónicas, sitemap, robots.txt, Open Graph y los enlaces
   del catálogo PDF salen de aquí (src/data/site.ts la lee como import.meta.env.SITE).
-  Por defecto es el despliegue de Vercel. Cuando www.dafercol.com apunte al
-  proyecto, define SITE_URL=https://www.dafercol.com en Vercel (Settings →
-  Environment Variables) o en .env, y vuelve a generar el catálogo.
+  Por defecto es el dominio oficial (en Vercel, dafercol.com redirige a www).
+  Para usar otra dirección, define SITE_URL en Vercel (Settings → Environment
+  Variables) o en .env, y vuelve a generar el catálogo.
 */
 const env = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '');
-const SITE_URL = (process.env.SITE_URL || env.SITE_URL || 'https://dafercol.vercel.app').replace(/\/+$/, '');
+const SITE_URL = (process.env.SITE_URL || env.SITE_URL || 'https://www.dafercol.com').replace(/\/+$/, '');
 
 // https://astro.build/config
 export default defineConfig({
