@@ -1,8 +1,14 @@
 {
-  "name": "defercol-landing",
+  "name": "dafercol-web",
   "type": "module",
   "version": "0.1.0",
   "private": true,
+  "description": "Sitio web de DAFERCOL SCG SAS: catálogo de racores, válvulas e instrumentación industrial",
+  "homepage": "https://www.dafercol.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dafercol/Dafercol-web.git"
+  },
   "engines": {
     "node": ">=20.3.0"
   },
