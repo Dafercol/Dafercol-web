@@ -3,7 +3,7 @@ title: 'DANFOSS, Presostato diferencial a Prueba de Explosión RT EEX'
 brand: valveco
 category: instrumentacion
 subcategory: presostatos
-summary: 'Presostato a Prueba de Explosión Diferencial RT EEX -DANFOSS'
+summary: 'Presostato diferencial Danfoss RT EEX a prueba de explosión, con carcasa IP66 y presión de trabajo de hasta 22 bar.'
 image: '/images/valveco/danfoss-presostato-diferencial-a-prueba-de-explosion-rt-eex.jpg'
 imageFit: contain
 order: 603

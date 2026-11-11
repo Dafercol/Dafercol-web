@@ -3,7 +3,7 @@ title: 'DANFOSS, Termostato a Prueba de Explosión Tipo RT EEX'
 brand: valveco
 category: instrumentacion
 subcategory: presostatos
-summary: 'RT EEX - TERMOSTATO A PRUEBA DE EXPLOSIÓN- CERTIFICADO EEX, ZONA 1, CAT 2, ON-OFF, DANFOSS'
+summary: 'Termostato Danfoss RT EEX a prueba de explosión, certificado para zona 1, con bulbo remoto y contacto SPDT bañado en oro.'
 image: '/images/valveco/danfoss-termostato-a-prueba-de-explosion-tipo-rt-eex.jpg'
 imageFit: contain
 order: 614

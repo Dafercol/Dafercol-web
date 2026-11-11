@@ -8,7 +8,7 @@ imageFit: contain
 order: 1183
 specs:
   - { label: 'Tamaños', value: 'Tamaño de manguera de 1 1/2 pulg.' }
-  - { label: 'Referencias disponibles', value: '1 números de parte' }
+  - { label: 'Referencias disponibles', value: '1 número de parte' }
 tags: ['manguera y tubo flexible', 'recambios y accesorios', 'MS-HC-SC-1A']
 ---
 
@@ -20,4 +20,4 @@ Encuentre cortadores de manguera de larga duración para mangueras y tubo de PFA
 
 Algunas referencias de esta familia: `MS-HC-SC-1A`.
 
-La familia incluye 1 números de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.
+La familia incluye 1 número de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.

@@ -3,7 +3,7 @@ title: 'TUBINOX, Empaque EPDM Ferula Clamp'
 brand: valveco
 category: tuberia
 subcategory: sanitaria
-summary: 'Su principal función es hacer sello entre dos férulas conexiones tipo clamp para evitar las fugas de líquido.'
+summary: 'Empaque sanitario de EPDM para uniones clamp: sella entre dos férulas y resiste el ozono, la intemperie y diversos químicos.'
 image: '/images/valveco/tubinox-empaque-epdm-ferula-clamp.jpg'
 imageFit: contain
 order: 673

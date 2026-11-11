@@ -3,7 +3,7 @@ title: 'DANFOSS, Transmisor de Presión a Prueba de Explosión MBS 4701'
 brand: valveco
 category: instrumentacion
 subcategory: presion
-summary: 'MBS 4701- MBS 4751– TRANSMISOR DE PRESIÓN A PRUEBA DE EXPLOSIÓN NORMA EEX ia IIC T6, DANFOSS'
+summary: 'Transmisores de presión MBS 4701 y MBS 4751 de Danfoss a prueba de explosión (EEx ia IIC T6), con rangos de 0 a 600 bar.'
 image: '/images/valveco/danfoss-transmisor-de-presion-a-prueba-de-explosion-mbs-4701.jpg'
 imageFit: contain
 order: 618

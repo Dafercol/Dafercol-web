@@ -3,7 +3,7 @@ title: 'DANFOSS, Sensor de Temperatura PT 100 Con Cabezote MBT 5252'
 brand: valveco
 category: instrumentacion
 subcategory: temperatura
-summary: 'MBT 5252- SENSOR DE TEMPERATURA PT 100 CON CABEZOTE DANFOSS'
+summary: 'Sensor de temperatura PT100 MBT 5252 de Danfoss con cabezote, rango de -50 a 200 °C y partes húmedas en acero inoxidable AISI 316 Ti.'
 image: '/images/valveco/danfoss-sensor-de-temperatura-pt-100-con-cabezote-mbt-5252.jpg'
 imageFit: contain
 order: 609

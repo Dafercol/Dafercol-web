@@ -2,7 +2,7 @@
 title: 'Tee'
 category: tuberia
 subcategory: accesorios
-summary: 'En acero al carbono e inoxidable, disponibles desde SCH 40 hasta SCH XXS, para sistemas de conducción de fluidos en la industria petrolera e industrial.'
+summary: 'Tes para tubería en acero al carbono e inoxidable, de SCH 40 a SCH XXS, para crear derivaciones en líneas de conducción de fluidos.'
 image: '/images/productos/tee.jpg'
 imageFit: contain
 order: 242

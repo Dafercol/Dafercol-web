@@ -10,7 +10,7 @@ specs:
   - { label: 'Tamaños', value: '1/4 a 1 pulg.' }
   - { label: 'Materiales', value: 'Acero inoxidable 316' }
   - { label: 'Presión', value: 'Máximo de 1378 bar (20 000 psig) a 4134 bar (60 000 psig)' }
-  - { label: 'Referencias disponibles', value: '1 números de parte' }
+  - { label: 'Referencias disponibles', value: '1 número de parte' }
 tags: ['racores', 'accesorios con cono y rosca', 'BH6MF20']
 ---
 
@@ -26,4 +26,4 @@ Haga conexiones de media o alta presión entre componentes y espacios con los ra
 
 Algunas referencias de esta familia: `BH6MF20`.
 
-La familia incluye 1 números de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.
+La familia incluye 1 número de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.

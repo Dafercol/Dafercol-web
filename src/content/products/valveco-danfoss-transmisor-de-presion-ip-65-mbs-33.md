@@ -3,7 +3,7 @@ title: 'DANFOSS, Transmisor de Presión IP 65, MBS 33'
 brand: valveco
 category: instrumentacion
 subcategory: presion
-summary: 'MBS 33 – TRANSMISOR DE PRESIÓN - IP 65, DANFOSS'
+summary: 'Transmisor de presión MBS 33 de Danfoss con protección IP65, para aplicaciones industriales y navales, de -40 a 85 °C.'
 image: '/images/valveco/danfoss-transmisor-de-presion-ip-65-mbs-33.jpg'
 imageFit: contain
 sku: 'MBS 33'

@@ -8,7 +8,7 @@ imageFit: contain
 order: 1090
 specs:
   - { label: 'Materiales', value: 'Acero inoxidable' }
-  - { label: 'Referencias disponibles', value: '1 números de parte' }
+  - { label: 'Referencias disponibles', value: '1 número de parte' }
 tags: ['válvulas', 'manifolds', 'SS-MB-VBK']
 ---
 
@@ -20,4 +20,4 @@ Asegure una instalación y funcionalidad sólidas con los conjuntos de montaje d
 
 Algunas referencias de esta familia: `SS-MB-VBK`.
 
-La familia incluye 1 números de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.
+La familia incluye 1 número de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.

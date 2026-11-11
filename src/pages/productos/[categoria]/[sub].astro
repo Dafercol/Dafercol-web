@@ -1,0 +1,24 @@
+---
+/** Página de un tipo de producto: /productos/valvulas/bola/ (ver CategoryPage.astro). */
+import { getCollection } from 'astro:content';
+import CategoryPage from '../../../components/CategoryPage.astro';
+import { categories } from '../../../data/site';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  // Solo los tipos con productos: una página vacía no sirve ni al visitante ni al buscador.
+  return categories.flatMap((category) => {
+    const inCat = products.filter((p) => p.data.category === category.slug);
+    return category.subcategories
+      .filter((sub) => inCat.some((p) => p.data.subcategory === sub.slug))
+      .map((sub) => ({
+        params: { categoria: category.slug, sub: sub.slug },
+        props: { category, sub, products: inCat },
+      }));
+  });
+}
+
+const { category, sub, products } = Astro.props;
+---
+
+<CategoryPage category={category} sub={sub} products={products} />

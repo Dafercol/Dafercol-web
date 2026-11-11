@@ -38,6 +38,8 @@ cualquier hosting de archivos estáticos.
 ```
 src/
   data/site.ts            Datos de la empresa, navegación, marcas y categorías
+  data/seo-categorias.ts  Título, descripción y texto de cada página de línea y de tipo
+  lib/seo.ts              Reglas de SEO de las fichas (fabricante, título y descripción)
   content.config.ts       Esquema de la colección de productos
   content/products/*.md   Un archivo por producto (define la URL)
   layouts/Layout.astro    HTML base, SEO (meta, Open Graph, JSON-LD), header, footer y WhatsApp
@@ -46,6 +48,8 @@ src/
     index.astro           Inicio
     productos/index.astro Catálogo web con filtros por marca, categoría y búsqueda
     productos/[slug].astro Detalle de producto con especificaciones y relacionados
+    productos/[categoria]/ Páginas de línea (/productos/valvulas/) y de tipo
+                          (/productos/valvulas/bola/), estáticas e indexables
     quienes-somos.astro
     contacto.astro        Formulario que abre WhatsApp con el mensaje listo
     catalogo.astro        Descarga del catálogo PDF
@@ -127,6 +131,24 @@ mensaje lista las opciones válidas.
 El catálogo acepta enlaces con `?categoria=valvulas&sub=solenoides&marca=valveco&q=ev220`.
 Los enlaces viejos a `?categoria=uniones-de-golpe` y `?categoria=accesorios-tuberia` siguen
 funcionando: llevan a la categoría y subcategoría nuevas (`legacyCategories` en `site.ts`).
+
+## SEO
+
+- **Fichas de producto.** El `<title>` y la meta descripción se arman en `src/lib/seo.ts`:
+  título de hasta 60 caracteres con el tipo de producto primero y el fabricante después, y
+  descripción de 100 a 160 caracteres con el resumen, dos datos clave y el llamado a
+  cotizar. El `h1` visible es el `title` del archivo. Los datos estructurados declaran el
+  fabricante real (Danfoss, ASCO, Comfit…), que se deduce del inicio del título; si se
+  agrega un fabricante nuevo, hay que sumarlo a `MAKERS` en ese archivo.
+- **Líneas y tipos.** `/productos/valvulas/` y `/productos/valvulas/bola/` son páginas
+  estáticas con texto propio (`src/data/seo-categorias.ts`), listado completo, migas y
+  datos estructurados. Son las que pueden posicionar en búsquedas genéricas; el catálogo
+  con filtros (`/productos/?categoria=…`) tiene una sola URL canónica y no compite con
+  ellas. Un tipo nuevo sin texto genera su página igual, con un texto básico, y la
+  construcción avisa.
+- **Resúmenes.** El `summary` de cada producto alimenta la tarjeta, la ficha y la meta
+  descripción: conviene escribirlo en minúsculas normales, con el tipo de producto y un
+  dato concreto, y sin copiar el texto del fabricante.
 
 ## Catálogo PDF
 

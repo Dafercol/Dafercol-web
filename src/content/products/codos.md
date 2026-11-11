@@ -2,7 +2,7 @@
 title: 'Codos'
 category: tuberia
 subcategory: accesorios
-summary: 'En acero al carbono e inoxidable, disponibles desde SCH 40 hasta SCH XXS, para sistemas de conducción de fluidos en la industria petrolera e industrial.'
+summary: 'Codos para tubería en acero al carbono e inoxidable, de SCH 40 a SCH XXS, para cambiar la dirección del flujo en líneas industriales.'
 image: '/images/productos/codos.jpg'
 imageFit: contain
 order: 241

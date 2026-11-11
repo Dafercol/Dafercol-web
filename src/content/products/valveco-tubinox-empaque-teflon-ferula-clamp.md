@@ -3,7 +3,7 @@ title: 'TUBINOX, Empaque Teflon Ferula Clamp'
 brand: valveco
 category: tuberia
 subcategory: sanitaria
-summary: 'Su principal función es hacer sello entre dos férulas conexiones tipo clamp para evitar las fugas de líquido.'
+summary: 'Empaque sanitario de teflón para uniones clamp: sella entre dos férulas, de -60 a 180 °C, resistente a químicos y solventes.'
 image: '/images/valveco/tubinox-empaque-teflon-ferula-clamp.jpg'
 imageFit: cover
 order: 675

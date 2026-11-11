@@ -9,7 +9,7 @@ order: 1048
 specs:
   - { label: 'Tamaños', value: '1/16 pulg.' }
   - { label: 'Materiales', value: 'Acero inoxidable 316' }
-  - { label: 'Referencias disponibles', value: '1 números de parte' }
+  - { label: 'Referencias disponibles', value: '1 número de parte' }
 tags: ['racores', 'racores para tubo y adaptadores', 'SS-1F0-3GC']
 ---
 
@@ -21,4 +21,4 @@ Los racores de bajo volumen muerto están diseñados para aumentar de forma fiab
 
 Algunas referencias de esta familia: `SS-1F0-3GC`.
 
-La familia incluye 1 números de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.
+La familia incluye 1 número de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.

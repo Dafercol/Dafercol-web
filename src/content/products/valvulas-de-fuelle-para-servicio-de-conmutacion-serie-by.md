@@ -11,7 +11,7 @@ specs:
   - { label: 'Temperatura', value: '–18°C (0°F) a 93°C (200°F)' }
   - { label: 'Materiales', value: 'Acero inoxidable 316' }
   - { label: 'Presión', value: '4,5 bar (65 psig) a 10,3 bar (150 psig)' }
-  - { label: 'Referencias disponibles', value: '1 números de parte' }
+  - { label: 'Referencias disponibles', value: '1 número de parte' }
 tags: ['válvulas', 'válvulas de fuelle', 'SS-4BY-V35-1C']
 ---
 
@@ -23,4 +23,4 @@ Descubra la válvula de fuelle serie BY para servicio de conmutación. Diseño c
 
 Algunas referencias de esta familia: `SS-4BY-V35-1C`.
 
-La familia incluye 1 números de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.
+La familia incluye 1 número de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.

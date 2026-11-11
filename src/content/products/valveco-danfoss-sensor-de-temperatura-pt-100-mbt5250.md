@@ -3,7 +3,7 @@ title: 'DANFOSS, Sensor de Temperatura PT 100 MBT5250'
 brand: valveco
 category: instrumentacion
 subcategory: temperatura
-summary: 'MBT 5250- SENSOR DE TEMPERATURA PT 100 DANFOSS'
+summary: 'Sensor de temperatura PT100 MBT 5250 de Danfoss para aire, gas, vapor, agua o aceite, de -50 a 200 °C, en acero inoxidable AISI 316 Ti.'
 image: '/images/valveco/danfoss-sensor-de-temperatura-pt-100-mbt5250.jpg'
 imageFit: contain
 order: 610

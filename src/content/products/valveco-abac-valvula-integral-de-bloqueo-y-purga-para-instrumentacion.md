@@ -3,7 +3,7 @@ title: 'ABAC, Válvula Integral de Bloqueo y Purga para instrumentación'
 brand: valveco
 category: valvulas
 subcategory: manifolds
-summary: 'VI5 VÁLVULA INTEGRAL DE BLOQUEO Y PURGA, ABAC'
+summary: 'Válvula integral VI5 de ABAC que combina bloqueo y purga en un solo conjunto para instalar manómetros, presostatos y transmisores de presión.'
 image: '/images/valveco/abac-valvula-integral-de-bloqueo-y-purga-para-instrumentacion.jpg'
 imageFit: contain
 order: 506

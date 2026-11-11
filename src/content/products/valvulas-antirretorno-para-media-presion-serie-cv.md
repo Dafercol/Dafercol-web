@@ -11,7 +11,7 @@ specs:
   - { label: 'Temperatura', value: '–23°C (–10°F) a 204°C (400°F)' }
   - { label: 'Materiales', value: 'Acero inoxidable 316, latón' }
   - { label: 'Presión', value: '82,6 bar (1200 psig) a 413 bar (6000 psig)' }
-  - { label: 'Referencias disponibles', value: '1 números de parte' }
+  - { label: 'Referencias disponibles', value: '1 número de parte' }
 tags: ['válvulas', 'válvulas antirretorno', 'CV8NFB15']
 ---
 
@@ -23,4 +23,4 @@ Las válvulas antirretorno de media presión están diseñadas para la contenci�
 
 Algunas referencias de esta familia: `CV8NFB15`.
 
-La familia incluye 1 números de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.
+La familia incluye 1 número de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.

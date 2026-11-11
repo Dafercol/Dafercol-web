@@ -11,7 +11,7 @@ specs:
   - { label: 'Temperatura', value: '–40°C (–40°F) a 93°C (200°F)' }
   - { label: 'Materiales', value: 'Acero inoxidable 316' }
   - { label: 'Presión', value: '6,8 bar (100 psig) a 48,2 bar (700 psig)' }
-  - { label: 'Referencias disponibles', value: '1 números de parte' }
+  - { label: 'Referencias disponibles', value: '1 número de parte' }
 tags: ['válvulas', 'válvulas de fuelle', '6L-M1D-122P-IJ']
 ---
 
@@ -23,4 +23,4 @@ Los manifolds de fuelle de 3 válvulas utilizan válvulas de fuelle para sistema
 
 Algunas referencias de esta familia: `6L-M1D-122P-IJ`.
 
-La familia incluye 1 números de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.
+La familia incluye 1 número de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.

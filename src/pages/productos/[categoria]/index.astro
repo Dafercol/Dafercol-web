@@ -1,0 +1,18 @@
+---
+/** Página de una línea de producto: /productos/valvulas/ (ver CategoryPage.astro). */
+import { getCollection } from 'astro:content';
+import CategoryPage from '../../../components/CategoryPage.astro';
+import { categories } from '../../../data/site';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return categories.map((category) => ({
+    params: { categoria: category.slug },
+    props: { category, products: products.filter((p) => p.data.category === category.slug) },
+  }));
+}
+
+const { category, products } = Astro.props;
+---
+
+<CategoryPage category={category} products={products} />

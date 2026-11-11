@@ -8,7 +8,7 @@ imageFit: contain
 order: 1040
 specs:
   - { label: 'Materiales', value: 'Acero al carbono' }
-  - { label: 'Referencias disponibles', value: '1 números de parte' }
+  - { label: 'Referencias disponibles', value: '1 número de parte' }
 tags: ['racores', 'accesorios roscados', 'MS-TIK-PG']
 ---
 
@@ -25,4 +25,4 @@ Explore herramientas y conjuntos útiles para ayudar a mantener los accesorios r
 
 Algunas referencias de esta familia: `MS-TIK-PG`.
 
-La familia incluye 1 números de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.
+La familia incluye 1 número de parte. Escríbenos con la referencia o la aplicación y te ayudamos a elegir la configuración correcta.

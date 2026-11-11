@@ -8,7 +8,11 @@ import { site, addressIsPlaceholder } from '../data/site';
 
 interface Props {
   title: string;
+  /** Título completo para <title>, ya con el nombre de la empresa (se usa tal cual). */
+  fullTitle?: string;
   description?: string;
+  /** og:type: "website" por defecto; "product" en las fichas. */
+  ogType?: string;
   image?: string;
   noindex?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
@@ -16,6 +20,8 @@ interface Props {
 
 const {
   title,
+  fullTitle: fullTitleProp,
+  ogType = 'website',
   description = site.description,
   image = '/og-default.png',
   noindex = false,
@@ -25,7 +31,7 @@ const {
 const base = Astro.site ?? new URL(site.url);
 const canonical = new URL(Astro.url.pathname, base);
 const ogImage = new URL(image, base);
-const fullTitle = title === site.name ? `${site.name} | ${site.tagline}` : `${title} | ${site.name}`;
+const fullTitle = fullTitleProp ?? (title === site.name ? `${site.name} | ${site.tagline}` : `${title} | ${site.name}`);
 
 const organization = {
   '@context': 'https://schema.org',
@@ -84,7 +90,7 @@ const schemas = [organization, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [j
         <meta name="google-site-verification" content={site.googleSiteVerification} />
       )
     }
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content="es_CO" />
     <meta property="og:title" content={fullTitle} />

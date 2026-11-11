@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import { site, brandBySlug, categoryBySlug, subcategoryBySlug, whatsappLink } from '../../data/site';
+import { manufacturer, productSeoTitle, productSeoDescription, breadcrumbLd, urls } from '../../lib/seo';
 
 export async function getStaticPaths() {
   const products = await getCollection('products');
@@ -39,7 +40,7 @@ const related = [
 ].slice(0, 3);
 
 const imageSrc = image ?? '/images/productos/placeholder.svg';
-const productUrl = new URL(`/productos/${product.id}`, site.url).toString();
+const productUrl = new URL(urls.product(product.id), site.url).toString();
 
 /**
  * Una sola fuente para el botón principal y la barra inferior. "Cantidad:" queda
@@ -55,28 +56,49 @@ const message = [
 const waHref = whatsappLink(message);
 const datasheetIsLocal = !!datasheet && datasheet.startsWith('/');
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: title,
-  description: summary,
-  sku,
-  image: new URL(imageSrc, site.url).toString(),
-  ...(brandName ? { brand: { '@type': 'Brand', name: brandName } } : {}),
-  category: [categoryInfo?.name ?? category, subInfo?.name].filter(Boolean).join(' > '),
-  url: productUrl,
-};
+// Marca en los datos estructurados: el fabricante real (Danfoss, ASCO, Comfit…),
+// no el distribuidor. Sin fabricante conocido, se omite.
+const maker = manufacturer(product);
+const catUrl = urls.category(category);
+const subUrl = urls.sub(category, subcategory);
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: title,
+    description: summary,
+    sku,
+    image: new URL(imageSrc, site.url).toString(),
+    ...(maker ? { brand: { '@type': 'Brand', name: maker } } : {}),
+    category: [categoryInfo?.name ?? category, subInfo?.name].filter(Boolean).join(' > '),
+    url: productUrl,
+  },
+  breadcrumbLd([
+    { name: 'Inicio', url: '/' },
+    { name: 'Productos', url: '/productos/' },
+    { name: categoryInfo?.name ?? category, url: catUrl },
+    ...(subInfo ? [{ name: subInfo.name, url: subUrl }] : []),
+    { name: title, url: urls.product(product.id) },
+  ]),
+];
 ---
 
-<Layout title={title} description={summary} image={image} jsonLd={jsonLd}>
+<Layout
+  title={title}
+  fullTitle={productSeoTitle(product)}
+  description={productSeoDescription(product)}
+  image={image}
+  ogType="product"
+  jsonLd={jsonLd}
+>
   <section class="section product">
     <div class="container">
       <nav class="breadcrumbs" aria-label="Ruta de navegación">
         <ol>
           <li><a href="/">Inicio</a></li>
           <li><a href="/productos">Productos</a></li>
-          <li><a href={`/productos?categoria=${category}`}>{categoryInfo?.name ?? category}</a></li>
-          {subInfo && <li><a href={`/productos?categoria=${category}&sub=${subcategory}`}>{subInfo.name}</a></li>}
+          <li><a href={catUrl}>{categoryInfo?.name ?? category}</a></li>
+          {subInfo && <li><a href={subUrl}>{subInfo.name}</a></li>}
           <li aria-current="page">{title}</li>
         </ol>
       </nav>

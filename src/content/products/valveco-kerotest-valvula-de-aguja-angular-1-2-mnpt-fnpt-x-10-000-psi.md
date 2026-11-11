@@ -3,7 +3,7 @@ title: 'KEROTEST, Válvula de aguja Angular 1/2"MNPT/FNPT x 10.000 PSI'
 brand: valveco
 category: valvulas
 subcategory: aguja
-summary: 'Válvula de aguja Angular 1/2"MNPT/FNPT x 10.000 PSI, KEROTEST'
+summary: 'Válvula de aguja angular Kerotest de 1/2" MNPT x FNPT para 10.000 psi, para bloqueo y regulación en muestreo e hidráulica.'
 image: '/images/valveco/kerotest-valvula-de-aguja-angular-1-2-mnpt-fnpt-x-10-000-psi.jpg'
 imageFit: contain
 sku: 'KTS'

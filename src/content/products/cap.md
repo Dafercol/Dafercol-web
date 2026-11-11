@@ -2,7 +2,7 @@
 title: 'Cap'
 category: tuberia
 subcategory: accesorios
-summary: 'En acero al carbono e inoxidable, disponibles desde SCH 40 hasta SCH XXS, para sistemas de conducción de fluidos en la industria petrolera e industrial.'
+summary: 'Caps para tubería en acero al carbono e inoxidable, de SCH 40 a SCH XXS, para cerrar extremos de línea en la industria petrolera y de proceso.'
 image: '/images/productos/cap.jpg'
 imageFit: contain
 order: 243

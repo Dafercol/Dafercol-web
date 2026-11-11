@@ -322,7 +322,7 @@ function buildHtml({ site, categories, brands, pages, totalProductos }) {
   const ctaHref = showContact ? wa : `${site.url}/contacto/`;
   const destacados = pages.reduce((n, pg) => n + pg.bloques.reduce((m, b) => m + b.productos.length + (b.destacado ? 1 : 0), 0), 0);
   const urlProducto = (p) => `${site.url}/productos/${p.id}/`; // canónica del sitio (con barra final)
-  const urlLinea = (cat) => `${site.url}/productos/?categoria=${cat.slug}`;
+  const urlLinea = (cat) => `${site.url}/productos/${cat.slug}/`;
   const subName = (p) => categories.find((c) => c.slug === p.category)?.subcategories.find((s) => s.slug === p.subcategory)?.name ?? '';
   const nCat = (cat) => totalProductos.filter((p) => p.category === cat.slug).length;
 

@@ -1,7 +1,7 @@
 ---
 title: 'Tapones'
 category: mantenimiento
-subcategory: quimicos
+subcategory: repuestos
 summary: 'Los tapones para tubo para intercambiadores de calor cierran los extremos de los tubos con fugas, ofreciendo un uso más prolongado del intercambiador.'
 image: '/images/productos/tapones.jpg'
 imageFit: contain

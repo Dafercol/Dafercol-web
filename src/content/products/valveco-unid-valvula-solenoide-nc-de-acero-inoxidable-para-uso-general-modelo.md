@@ -3,7 +3,7 @@ title: 'UNiD, Válvula Solenoide NC de Acero Inoxidable para Uso General - Model
 brand: valveco
 category: valvulas
 subcategory: solenoides
-summary: 'No se recomienda el uso de esta válvula con los siguientes tipos de fluidos:'
+summary: 'Válvula solenoide UNI-D modelo SUW en acero inoxidable, 2/2 vías normalmente cerrada y de acción directa, que opera sin presión diferencial.'
 image: '/images/valveco/unid-valvula-solenoide-nc-de-acero-inoxidable-para-uso-general-modelo.jpg'
 imageFit: contain
 order: 589
