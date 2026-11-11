@@ -3,7 +3,7 @@ title: 'DANFOSS, Presostato para Aplicaciones Livianas Tipo KPI'
 brand: valveco
 category: instrumentacion
 subcategory: presostatos
-summary: 'KPI – PRESOSTATO PARA APLICACIONES LIVIANAS DANFOSS'
+summary: 'Presostato Danfoss KPI para aplicaciones livianas con líquidos y gases, rangos de -0,2 a 28 bar y resistencia a vibraciones.'
 image: '/images/valveco/danfoss-presostato-para-aplicaciones-livianas-tipo-kpi.jpg'
 imageFit: contain
 order: 606

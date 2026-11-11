@@ -3,7 +3,7 @@ title: 'DANFOSS, Presostato de Alta Presión para Sistemas Hidráulicos MBC 5100
 brand: valveco
 category: instrumentacion
 subcategory: presostatos
-summary: 'Presostato a Prueba de Explosión Diferencial RT EEX -DANFOSS'
+summary: 'Presostato Danfoss MBC 5100 de alta presión para sistemas hidráulicos, con fuelle y pistón en acero inoxidable y conexión eléctrica DIN 43650.'
 image: '/images/valveco/danfoss-presostato-de-alta-presion-para-sistemas-hidraulicos-mbc-5100.jpg'
 imageFit: contain
 sku: 'MBC'
@@ -14,8 +14,6 @@ tags: ['danfoss', 'bronce/ inox', 'control de fluidos', 'controles automatizaci�
 ---
 
 ## Descripción
-
-**Presostato a Prueba de Explosión Diferencial RT EEX -DANFOSS**
 
 **MBC 5100 – PRESOSTATO DE ALTA PRESIÓN PARA SISTEMAS HIDRAULICOS**
 

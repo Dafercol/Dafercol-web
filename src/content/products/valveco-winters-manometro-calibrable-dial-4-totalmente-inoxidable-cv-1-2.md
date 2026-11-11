@@ -3,11 +3,12 @@ title: 'WINTERS, Manómetro Calibrable Dial 4" Totalmente Inoxidable CV 1/2"'
 brand: valveco
 category: instrumentacion
 subcategory: manometros
-summary: 'Manómetro Calibrable Dial 4" Totalmente Inoxidable CV 1/2" WINTERS'
+summary: 'Manómetro calibrable de dial 4" totalmente en acero inoxidable, con conexión de 1/2" (CV).'
 image: '/images/valveco/winters-manometro-calibrable-dial-4-totalmente-inoxidable-cv-1-2.jpg'
 imageFit: contain
 sku: 'MEX5'
 order: 633
+featured: true
 specs:
   - { label: 'Escalas', value: '-30Hg/0, -30Hg/30PSI, 0/6 PSI, 0/15 PSI, 0/30 PSI, 0/60 PSI, 0/100 PSI, 0/160 PSI, 0/200 PSI, 0/300 PSI, 0/400 PSI, 0/600 PSI, 0/1000 PSI, 0/2000 PSI y 4 más' }
 tags: ['winters', 'inoxidable', 'medición de fluidos', 'MEX5']

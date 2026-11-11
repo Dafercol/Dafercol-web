@@ -3,7 +3,7 @@ title: 'DANFOSS, Switch de Flujo Tipo Paleta'
 brand: valveco
 category: instrumentacion
 subcategory: presostatos
-summary: 'SWITCH DE FLUJO DANFOSS - SOLUCIÓN CONFIABLE PARA EL CONTROL DE CAUDAL'
+summary: 'Switch de flujo mecánico de paleta ajustable de Danfoss para detectar la presencia o ausencia de caudal en líneas de fluidos.'
 image: '/images/valveco/danfoss-switch-de-flujo-tipo-paleta.jpg'
 imageFit: contain
 sku: 'FQS'

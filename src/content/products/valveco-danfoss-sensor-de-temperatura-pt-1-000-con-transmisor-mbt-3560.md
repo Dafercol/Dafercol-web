@@ -3,7 +3,7 @@ title: 'DANFOSS, Sensor de Temperatura PT 1.000 Con Transmisor MBT 3560'
 brand: valveco
 category: instrumentacion
 subcategory: temperatura
-summary: 'MBT 3560- SENSOR DE TEMPERATURA PT 1000 CON TRANSMISOR INTEGRADO DANFOSS'
+summary: 'Sensor de temperatura PT 1000 con transmisor integrado MBT 3560 de Danfoss.'
 image: '/images/valveco/danfoss-sensor-de-temperatura-pt-1-000-con-transmisor-mbt-3560.jpg'
 imageFit: contain
 order: 608

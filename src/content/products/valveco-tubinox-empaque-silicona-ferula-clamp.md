@@ -3,7 +3,7 @@ title: 'TUBINOX, Empaque Silicona Ferula Clamp'
 brand: valveco
 category: tuberia
 subcategory: sanitaria
-summary: 'Su principal función es hacer sello entre dos férulas conexiones tipo clamp para evitar las fugas de líquido.'
+summary: 'Empaque sanitario de silicona para uniones clamp: sella entre dos férulas y trabaja de -60 a 250 °C.'
 image: '/images/valveco/tubinox-empaque-silicona-ferula-clamp.jpg'
 imageFit: contain
 sku: 'N/D'

@@ -3,7 +3,7 @@ title: 'DANFOSS, Presostato para Trabajo Pesado KPS'
 brand: valveco
 category: instrumentacion
 subcategory: presostatos
-summary: 'KPS - PRESOSTATO PARA TRABAJO PESADO - DANFOSS'
+summary: 'Presostato Danfoss KPS para trabajo pesado: estructura robusta, carcasa IP67 resistente al agua marina y alta resistencia a golpes y vibraciones.'
 image: '/images/valveco/danfoss-presostato-para-trabajo-pesado-kps.jpg'
 imageFit: contain
 order: 607

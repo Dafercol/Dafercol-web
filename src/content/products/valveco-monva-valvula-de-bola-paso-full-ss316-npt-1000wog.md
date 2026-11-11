@@ -7,6 +7,7 @@ summary: 'La válvula de bola SS316 Paso Full rosca NPT 1000WOG de la marca HOTT
 image: '/images/valveco/monva-valvula-de-bola-paso-full-ss316-npt-1000wog.jpg'
 imageFit: contain
 order: 560
+featured: true
 specs:
   - { label: 'Medidas', value: '1/4", 3/8", 1/2", 3/4", 1", 1.1/4", 1.1/2", 2"' }
 tags: ['monva', 'inoxidable', 'válvulas industriales']

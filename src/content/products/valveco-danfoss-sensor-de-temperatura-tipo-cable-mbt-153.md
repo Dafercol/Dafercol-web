@@ -3,7 +3,7 @@ title: 'DANFOSS, Sensor de Temperatura Tipo Cable MBT 153'
 brand: valveco
 category: instrumentacion
 subcategory: temperatura
-summary: 'MBT 153 – SENSOR DE TEMPERATURA TIPO CABLE DANFOSS'
+summary: 'Sensor de temperatura MBT 153 de Danfoss con cable, elemento PT100 y bulbo de 1", para temperaturas de hasta 200 °C.'
 image: '/images/valveco/danfoss-sensor-de-temperatura-tipo-cable-mbt-153.jpg'
 imageFit: contain
 sku: 'MBT'

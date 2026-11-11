@@ -18,7 +18,7 @@ const reasons = [
   },
   {
     title: 'Marcas de confianza',
-    text: 'Swagelok, Valveco, Comfit y Ferreinstrumentos. Producto original, con respaldo.',
+    text: 'Valveco, Comfit y fabricantes especializados. Producto original, con respaldo.',
   },
   {
     title: 'Respuesta rápida',
@@ -61,7 +61,7 @@ const reasons = [
       <div class="grid grid--3 lines-grid">
         {
           categories.map((c) => (
-            <a class="cat-card card card--interactive glass--flat" href={`/productos?categoria=${c.slug}`}>
+            <a class="cat-card card card--interactive glass--flat" href={`/productos/${c.slug}/`}>
               <h3>{c.name}</h3>
               <p>{c.description}</p>
               <span class="link link--accent link-chevron"><span class="cat-card__cta">Ver productos</span></span>

@@ -3,7 +3,7 @@ title: 'TUBINOX, Tee inoxidable Sanitaria Soldar T-304, 3A/DIN'
 brand: valveco
 category: tuberia
 subcategory: sanitaria
-summary: 'Material de alta calidad: Fabricada en acero inoxidable AISI 304, esta tee garantiza una excelente resistencia a la corrosión y a altas temperaturas, asegurando durabilidad y confiabilidad en entornos sanitarios…'
+summary: 'Tee sanitaria para soldar en acero inoxidable AISI 304, norma 3A/DIN, para derivaciones permanentes en líneas de alimentos, bebidas y farmacéutica.'
 image: '/images/valveco/tubinox-tee-inoxidable-sanitaria-soldar-t-304-3a-din.jpg'
 imageFit: contain
 sku: 'N/D'

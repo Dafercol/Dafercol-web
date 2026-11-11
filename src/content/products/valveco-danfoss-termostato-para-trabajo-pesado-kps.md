@@ -3,7 +3,7 @@ title: 'DANFOSS, Termostato para Trabajo Pesado KPS'
 brand: valveco
 category: instrumentacion
 subcategory: presostatos
-summary: 'KPS – TERMOSTATO PARA TRABAJO PESADO, DANFOSS'
+summary: 'Termostato Danfoss KPS para trabajo pesado, con rangos de -10 a 200 °C, carcasa IP67 y contactos de plata con baño de oro.'
 image: '/images/valveco/danfoss-termostato-para-trabajo-pesado-kps.jpg'
 imageFit: cover
 order: 617

@@ -3,7 +3,7 @@ title: 'DANFOSS, Transmisor de Presión IP 65 MBS 4500'
 brand: valveco
 category: instrumentacion
 subcategory: presion
-summary: 'MBS 4500 – TRANSMISOR DE PRESIÓN IP 65, DANFOSS'
+summary: 'Transmisor de presión MBS 4500 de Danfoss con protección IP65, en versiones absoluta y relativa, para procesos industriales.'
 image: '/images/valveco/danfoss-transmisor-de-presion-ip-65-mbs-4500.jpg'
 imageFit: contain
 sku: 'MBS'

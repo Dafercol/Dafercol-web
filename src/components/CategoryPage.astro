@@ -1,0 +1,418 @@
+---
+/**
+ * Página de una línea (/productos/valvulas/) o de un tipo (/productos/valvulas/bola/).
+ *
+ * A diferencia del catálogo con filtros (/productos/?categoria=…), que se
+ * resuelve en el navegador y tiene una sola URL canónica, estas páginas son
+ * estáticas y propias: título, descripción, texto de introducción y listado
+ * completo en el HTML. Son las que pueden posicionar en búsquedas genéricas
+ * ("válvulas de bola", "uniones de golpe") y las que enlazan las migas de las
+ * fichas.
+ *
+ * Línea: un bloque por tipo con todos sus productos. Tipo: sus productos y los
+ * demás tipos de la línea. Ambas terminan con la cotización por WhatsApp.
+ */
+import type { CollectionEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import ProductCard from './ProductCard.astro';
+import { site, categories, whatsappLink, type Category, type Subcategory } from '../data/site';
+import { seoCategorias, seoTipos, type SeoText } from '../data/seo-categorias';
+import { manufacturer, breadcrumbLd, urls } from '../lib/seo';
+
+type Product = CollectionEntry<'products'>;
+
+interface Props {
+  category: Category;
+  sub?: Subcategory;
+  /** Productos de la línea completa (la página filtra los del tipo). */
+  products: Product[];
+}
+
+const { category, sub, products } = Astro.props;
+const ci = categories.indexOf(category);
+
+const sortP = (a: Product, b: Product) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title, 'es');
+const inCat = [...products].sort(sortP);
+const inSub = (s: Subcategory) => inCat.filter((p) => p.data.subcategory === s.slug);
+const subsWithItems = category.subcategories.filter((s) => inSub(s).length > 0);
+const shown = sub ? inSub(sub) : inCat;
+
+// Textos: los de seo-categorias.ts o, si faltan, uno básico con el nombre.
+const key = sub ? `${category.slug}/${sub.slug}` : category.slug;
+const seo: SeoText =
+  (sub ? seoTipos[key] : seoCategorias[key]) ??
+  (() => {
+    console.warn(`[DAFERCOL] seo-categorias.ts: falta el texto de "${key}"; se usa uno básico.`);
+    const name = sub ? `${sub.name} · ${category.name}` : category.name;
+    return {
+      title: `${name} | ${site.name}`,
+      description: `${sub ? sub.name : category.description} Cotiza por WhatsApp con ${site.name}, despacho a todo Colombia.`,
+      intro: [sub ? `${sub.name} de nuestra línea de ${category.name.toLowerCase()}.` : category.description],
+    };
+  })();
+const h1 = seo.h1 ?? (sub ? sub.name : category.name);
+
+// Fabricantes presentes (solo los conocidos): dato útil para el comprador y para buscar.
+const makers = [...new Set(shown.map(manufacturer).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'es'));
+
+const url = sub ? urls.sub(category.slug, sub.slug) : urls.category(category.slug);
+const filterHref = `/productos/?categoria=${category.slug}${sub ? `&sub=${sub.slug}` : ''}`;
+const waHref = whatsappLink(`Hola DAFERCOL, busco ${h1.toLowerCase()}. ¿Me pueden asesorar?`);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: h1,
+    description: seo.description,
+    url: new URL(url, site.url).toString(),
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: shown.length,
+      itemListElement: shown.map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: new URL(urls.product(p.id), site.url).toString(),
+        name: p.data.title,
+      })),
+    },
+  },
+  breadcrumbLd([
+    { name: 'Inicio', url: '/' },
+    { name: 'Productos', url: '/productos/' },
+    { name: category.name, url: urls.category(category.slug) },
+    ...(sub ? [{ name: sub.name, url }] : []),
+  ]),
+];
+---
+
+<Layout title={h1} fullTitle={seo.title} description={seo.description} jsonLd={jsonLd}>
+  <section class="page-hero cat-hero">
+    <div class="container">
+      <span class="eyebrow">{sub ? category.name : `Línea ${String(ci + 1).padStart(2, '0')}`}</span>
+      <h1>{h1}.</h1>
+      <p>{seo.intro[0]}</p>
+      <ul class="cat-hero__facts" role="list">
+        <li><strong>{shown.length}</strong> {shown.length === 1 ? 'producto' : 'productos'}</li>
+        {!sub && <li><strong>{subsWithItems.length}</strong> tipos</li>}
+        {makers.length > 0 && <li><strong>{makers.length}</strong> {makers.length === 1 ? 'fabricante' : 'fabricantes'}</li>}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section cat-body">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/productos/">Productos</a></li>
+          {
+            sub ? (
+              <>
+                <li><a href={urls.category(category.slug)}>{category.name}</a></li>
+                <li aria-current="page">{sub.name}</li>
+              </>
+            ) : (
+              <li aria-current="page">{category.name}</li>
+            )
+          }
+        </ol>
+      </nav>
+
+      <div class="cat-intro">
+        <div class="cat-intro__text">
+          {seo.intro.slice(1).map((t) => <p>{t}</p>)}
+          {makers.length > 0 && (
+            <p class="cat-makers">
+              <span>Fabricantes:</span> {makers.join(', ')}.
+            </p>
+          )}
+        </div>
+        <div class="cat-intro__actions">
+          <a class="btn btn-whatsapp" href={waHref} target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+          <a class="link link-chevron" href={filterHref}>Buscar y filtrar</a>
+        </div>
+      </div>
+
+      <!-- Tipos de la línea: enlaces reales (rastreables), no filtros. -->
+      <nav class="cat-types" aria-label={`Tipos de ${category.name.toLowerCase()}`}>
+        <ul role="list">
+          {
+            sub && (
+              <li>
+                <a class="chip" href={urls.category(category.slug)}>
+                  Toda la línea<span class="chip__n mono">{inCat.length}</span>
+                </a>
+              </li>
+            )
+          }
+          {
+            subsWithItems.map((s) => (
+              <li>
+                {sub?.slug === s.slug ? (
+                  <span class="chip chip--current" aria-current="page">
+                    {s.name}
+                    <span class="chip__n mono">{inSub(s).length}</span>
+                  </span>
+                ) : (
+                  <a class="chip" href={sub ? urls.sub(category.slug, s.slug) : `#${s.slug}`}>
+                    {s.name}
+                    <span class="chip__n mono">{inSub(s).length}</span>
+                  </a>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      {
+        sub ? (
+          <ul class="grid grid--3 cat-grid is-in" role="list">
+            {shown.map((p, i) => (
+              <li>
+                <ProductCard product={p} index={i} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          subsWithItems.map((s, k) => (
+            <section class="cat-group" id={s.slug} aria-labelledby={`h-${s.slug}`}>
+              <header class="cat-group__head">
+                <h2 id={`h-${s.slug}`}>{s.name}</h2>
+                <a class="link link-chevron" href={urls.sub(category.slug, s.slug)}>
+                  Ver los {inSub(s).length}
+                </a>
+              </header>
+              <ul class="grid grid--3 cat-grid is-in" role="list">
+                {inSub(s).map((p, i) => (
+                  <li>
+                    <ProductCard product={p} index={k === 0 ? i : undefined} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container cat-cta">
+      <h2>¿No ves la referencia que buscas?</h2>
+      <p class="lead">
+        Manejamos más referencias de las que aparecen aquí. Escríbenos con la medida, el material o una foto y te
+        asesoramos.
+      </p>
+      <a class="btn btn-whatsapp" href={waHref} target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+      <p class="cat-cta__more">
+        Otras líneas:
+        {
+          categories
+            .filter((c) => c.slug !== category.slug)
+            .map((c, i, arr) => (
+              <>
+                <a href={urls.category(c.slug)}>{c.name}</a>
+                {i < arr.length - 1 ? ' · ' : ''}
+              </>
+            ))
+        }
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .cat-hero h1 {
+    margin-top: var(--space-2);
+  }
+
+  .cat-hero p {
+    margin-bottom: 0;
+  }
+
+  .cat-hero__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-caps-sm, 0.08em);
+    text-transform: uppercase;
+    color: var(--acero-claro);
+  }
+
+  .cat-hero__facts strong {
+    margin-right: 4px;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    letter-spacing: 0;
+    color: #fff;
+  }
+
+  .cat-body {
+    padding-top: var(--space-6);
+  }
+
+  .cat-body .breadcrumbs {
+    margin-bottom: var(--space-5);
+  }
+
+  .cat-body .breadcrumbs li[aria-current] {
+    padding-block: var(--space-2);
+  }
+
+  .cat-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-4) var(--space-8);
+    align-items: start;
+  }
+
+  .cat-intro__text {
+    max-width: 68ch;
+  }
+
+  .cat-intro__text p {
+    margin: 0 0 var(--space-3);
+    color: var(--color-text-2);
+  }
+
+  .cat-makers span {
+    font-weight: var(--weight-semibold);
+    color: var(--color-heading);
+  }
+
+  .cat-intro__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .cat-intro__actions .link {
+    font-size: var(--text-sm);
+  }
+
+  .cat-types {
+    margin: var(--space-6) 0 var(--space-7);
+  }
+
+  .cat-types ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cat-types .chip {
+    gap: 6px;
+    min-height: var(--control-h-sm);
+    padding: 0 var(--space-4);
+    animation: none;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .cat-types .chip--current {
+    background: var(--color-brand-fill);
+    color: var(--color-on-brand);
+    cursor: default;
+  }
+
+  .chip__n {
+    font-size: var(--text-xs);
+    color: var(--color-text-2);
+  }
+
+  .chip--current .chip__n {
+    color: inherit;
+    opacity: 0.8;
+  }
+
+  .cat-group + .cat-group {
+    margin-top: var(--space-9);
+  }
+
+  .cat-group {
+    scroll-margin-top: calc(var(--header-h) + var(--space-4));
+  }
+
+  .cat-group__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-4);
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-3);
+    border-bottom: 2px solid var(--color-heading);
+  }
+
+  .cat-group__head h2 {
+    margin: 0;
+    font-size: var(--text-2xl);
+  }
+
+  .cat-group__head .link {
+    font-size: var(--text-sm);
+  }
+
+  .cat-grid {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cat-grid > li {
+    display: flex;
+    min-width: 0;
+  }
+
+  .cat-grid > li > :global(.product-card) {
+    flex: 1 1 auto;
+  }
+
+  .cat-cta {
+    text-align: center;
+  }
+
+  .cat-cta .lead {
+    max-width: 52ch;
+    margin: var(--space-2) auto var(--space-5);
+    color: var(--color-text-2);
+  }
+
+  .cat-cta__more {
+    max-width: 72ch;
+    margin: var(--space-6) auto 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-2);
+    line-height: 1.9;
+  }
+
+  .cat-cta__more a {
+    color: var(--color-link, var(--color-heading));
+  }
+
+  @media (max-width: 860px) {
+    .cat-intro {
+      grid-template-columns: 1fr;
+    }
+
+    .cat-intro__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .cat-group__head h2 {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

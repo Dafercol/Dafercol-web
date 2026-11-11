@@ -10,9 +10,9 @@
    Reglas del manual que gobiernan la hoja:
    - Azul DAFERCOL para nombre, títulos y textos principales; azul noche para
      fondos en negativo (film, pie, heros).
-   - Rojo manómetro solo como acento puntual (máx. 5 % de la pieza): la raya de
-     las etiquetas, el indicador de página actual, el progreso del recorrido.
-     Nunca en botones ni fondos.
+   - Acero (plateado) como acento puntual: la raya de las etiquetas, el indicador
+     de página actual, el progreso del recorrido. El rojo manómetro queda solo en
+     el logo y en los avisos de error.
    - Archivo 900 expandida (118 %) para titulares grandes; nunca en texto corrido.
      Barlow para todo lo demás: Regular textos, Medium datos y tablas, SemiBold
      subtítulos, Bold referencias y códigos. Etiquetas en mayúsculas espaciadas.
@@ -120,9 +120,9 @@
   --color-on-brand: #ffffff;
   --color-primary-soft: var(--navy-100);
   --color-eyebrow: var(--brand-azul);
-  --color-accent: var(--brand-rojo);        /* solo detalles: rayas, indicadores, progreso */
-  --color-accent-hover: var(--red-600);
-  --color-accent-text: var(--red-600);      /* 6,1:1 sobre blanco; texto rojo solo en avisos */
+  --color-accent: var(--acero-medio);       /* solo detalles: rayas, indicadores, progreso */
+  --color-accent-hover: var(--acero-oscuro);
+  --color-accent-text: var(--acero-oscuro); /* 5,2:1 sobre blanco */
   --color-on-accent: #ffffff;
   --color-whatsapp: var(--green-wa);
   --color-whatsapp-hover: #1fc45c;
@@ -269,9 +269,9 @@
     --color-on-brand: #0e2548;
     --color-primary-soft: rgba(156, 181, 218, 0.14);
     --color-eyebrow: #d3d9e0;
-    --color-accent: #e0353c;
-    --color-accent-hover: #e5484e;
-    --color-accent-text: #ff8a8e;
+    --color-accent: var(--acero-claro);
+    --color-accent-hover: #ffffff;
+    --color-accent-text: var(--acero-claro);
     --color-whatsapp-hover: #3ddc78;
     --color-focus: #8fb0e6;
     --color-error: #ff7b74;
@@ -321,9 +321,9 @@
   --color-on-brand: #0e2548;
   --color-primary-soft: rgba(156, 181, 218, 0.14);
   --color-eyebrow: #d3d9e0;
-  --color-accent: #e0353c;
-  --color-accent-hover: #e5484e;
-  --color-accent-text: #ff8a8e;
+  --color-accent: var(--acero-claro);
+  --color-accent-hover: #ffffff;
+  --color-accent-text: var(--acero-claro);
   --color-whatsapp-hover: #3ddc78;
   --color-focus: #8fb0e6;
   --color-error: #ff7b74;
@@ -1343,7 +1343,7 @@ html.js .reveal.is-in {
 
 .page-hero .eyebrow {
   --color-eyebrow: var(--acero-claro);
-  --color-accent: var(--brand-rojo);
+  --color-accent: var(--acero-claro);
 }
 
 /* Variante con imagen de fondo: la foto va detrás y un degradado navy

@@ -85,7 +85,7 @@ const stops: Stop[] = [
     eyebrow: 'Racores y conexiones',
     title: 'Una conexión para cada línea.',
     body: 'Racores de tubo, compresión y rosca en acero inoxidable, bronce y acero al carbono.',
-    ctas: [{ label: 'Ver racores', href: '/productos?categoria=racores', kind: 'primary' }],
+    ctas: [{ label: 'Ver racores', href: '/productos/racores/', kind: 'primary' }],
     focus: '50% 55%',
   },
   {
@@ -95,7 +95,7 @@ const stops: Stop[] = [
     title: 'Lo que más piden las plantas.',
     body: 'Válvulas, manifolds y manómetros de alta rotación, con inventario disponible.',
     ctas: [
-      { label: 'Ver válvulas', href: '/productos?categoria=valvulas', kind: 'primary' },
+      { label: 'Ver válvulas', href: '/productos/valvulas/', kind: 'primary' },
       { label: 'Todo el catálogo', href: '/productos', kind: 'ghost' },
     ],
     focus: '50% 50%',
@@ -107,8 +107,8 @@ const stops: Stop[] = [
     title: 'Más que un proveedor.',
     body: 'Tubería, mangueras y reguladores para la instalación completa, con el respaldo técnico que tu operación exige.',
     ctas: [
-      { label: 'Ver tubería', href: '/productos?categoria=tuberia', kind: 'primary' },
-      { label: 'Ver reguladores', href: '/productos?categoria=reguladores', kind: 'ghost' },
+      { label: 'Ver tubería', href: '/productos/tuberia/', kind: 'primary' },
+      { label: 'Ver reguladores', href: '/productos/reguladores/', kind: 'ghost' },
     ],
     focus: '55% 50%',
   },
@@ -426,7 +426,7 @@ const config = { clips, focus: stops.map((s) => s.focus) };
     flex: none;
     width: 22px;
     height: 3px;
-    background: var(--brand-rojo);
+    background: var(--acero-claro);
   }
 
   .film__title {
@@ -648,11 +648,11 @@ const config = { clips, focus: stops.map((s) => s.focus) };
     transform: scale(1.25);
   }
 
-  /* Parada actual: el rojo de la aguja del manómetro. */
+  /* Parada actual: acero claro, el brillo de las piezas. */
   .film__dot[aria-current='step'] i {
-    background: var(--brand-rojo);
+    background: var(--acero-claro);
     transform: scale(1.4);
-    box-shadow: 0 0 0 4px rgb(210 35 42 / 0.28);
+    box-shadow: 0 0 0 4px rgb(211 217 224 / 0.28);
   }
 
   .film__dot:focus-visible {
@@ -704,7 +704,7 @@ const config = { clips, focus: stops.map((s) => s.focus) };
     width: 100%;
     transform-origin: 0 50%;
     transform: scaleX(0);
-    background: var(--brand-rojo);
+    background: var(--acero-claro);
   }
 
   /* Pista discreta: píldora de una línea con un chevron de 16 px que late. */
@@ -774,7 +774,7 @@ const config = { clips, focus: stops.map((s) => s.focus) };
     height: 14px;
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top-color: var(--brand-rojo);
+    border-top-color: var(--acero-claro);
     animation: film-spin 0.9s linear infinite;
   }
 
@@ -1171,6 +1171,18 @@ const config = { clips, focus: stops.map((s) => s.focus) };
       }
     }
     let scrolledOnce = false;
+    /** Tramo que ya estaba a la vista al cargar; su precarga espera al primer scroll. */
+    let pendingGap = -1;
+
+    // Carga anticipada del tramo g: su clip y la imagen a la que lleva ya deberían
+    // estar; el clip y la imagen siguientes empiezan a bajar.
+    function preloadGap(g: number) {
+      requestFirstClip();
+      loadClip(clipLayers[g]);
+      hydrateStill(g + 1);
+      loadClip(clipLayers[g + 1]);
+      hydrateStill(g + 2);
+    }
 
     function lerpFocus(a: string, b: string, t: number) {
       const pa = a.split(/\s+/).map(parseFloat);
@@ -1202,6 +1214,8 @@ const config = { clips, focus: stops.map((s) => s.focus) };
       if (!scrolledOnce && y > 8) {
         scrolledOnce = true;
         requestFirstClip();
+        if (pendingGap >= 0) preloadGap(pendingGap);
+        pendingGap = -1;
         if (!clipLayers[0]?.ready) setLoading(true);
       }
 
@@ -1411,19 +1425,22 @@ const config = { clips, focus: stops.map((s) => s.focus) };
       );
       stopEls.forEach((s) => io!.observe(s));
 
-      // Tramo g a la vista (o a un 10 % de pantalla): su clip y la imagen a la que
-      // lleva ya deberían estar; el clip y la imagen siguientes empiezan a bajar.
+      // Tramo g a la vista (o a un 10 % de pantalla): se precarga lo suyo y lo siguiente.
+      // El primer tramo empieza justo bajo el hero, así que "está a la vista" desde
+      // que la página carga: sin esperar al primer scroll, dos clips y dos fotos
+      // bajaban a la vez que la foto del hero y le quitaban la red (LCP de 7 s en
+      // 4G lento). Hasta que el visitante se mueve solo actúa scheduleFirstClip().
       gapIO = new IntersectionObserver(
         (entries) =>
           entries.forEach((e) => {
             if (!e.isIntersecting) return;
             const g = gapEls.indexOf(e.target as HTMLElement);
             if (g < 0) return;
-            requestFirstClip();
-            loadClip(clipLayers[g]);
-            hydrateStill(g + 1);
-            loadClip(clipLayers[g + 1]);
-            hydrateStill(g + 2);
+            if (!scrolledOnce) {
+              pendingGap = pendingGap < 0 ? g : Math.min(pendingGap, g);
+              return;
+            }
+            preloadGap(g);
           }),
         { rootMargin: '0px 0px 10% 0px', threshold: 0 },
       );

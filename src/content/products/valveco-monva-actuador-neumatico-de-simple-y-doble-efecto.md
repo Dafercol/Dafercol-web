@@ -3,7 +3,7 @@ title: 'MONVA, Actuador neumático de simple y doble efecto'
 brand: valveco
 category: valvulas
 subcategory: actuadores
-summary: 'Actuadores Neumáticos - Eficiencia y Potencia para tu Industria'
+summary: 'Actuadores neumáticos de simple y doble efecto para automatizar válvulas de cuarto de vuelta.'
 image: '/images/valveco/monva-actuador-neumatico-de-simple-y-doble-efecto.png'
 imageFit: contain
 order: 554

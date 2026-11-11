@@ -3,7 +3,7 @@ title: 'UNiD, Válvula Solenoide de Hierro con Bridas para Uso General'
 brand: valveco
 category: valvulas
 subcategory: solenoides
-summary: 'No se recomienda el uso de esta válvula con los siguientes tipos de fluidos:'
+summary: 'Válvula solenoide UNI-D serie UW-F de hierro con bridas, 2/2 vías normalmente cerrada y operada por piloto, para agua, aire y aceite ligero.'
 image: '/images/valveco/unid-valvula-solenoide-de-hierro-con-bridas-para-uso-general.jpg'
 imageFit: contain
 order: 584

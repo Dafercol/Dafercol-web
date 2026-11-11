@@ -3,7 +3,7 @@ title: 'DANFOSS, Presostato de Uso Industrial Tipo RT'
 brand: valveco
 category: instrumentacion
 subcategory: presostatos
-summary: 'PRESOSTATO DE USO INDUSTRIAL Tipo RT DANFOSS'
+summary: 'Presostato de uso industrial tipo RT de Danfoss, para control y alarma de presión en procesos y equipos.'
 image: '/images/valveco/danfoss-presostato-de-uso-industrial-tipo-rt.jpg'
 imageFit: contain
 order: 602

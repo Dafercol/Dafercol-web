@@ -26,12 +26,14 @@ const { product, index, fit: fitProp } = Astro.props;
 const { title, brand, category, subcategory, summary, image, tags, sku, specs, imageFit } = product.data;
 // La página puede forzar el ajuste; si no, manda el del producto (frontmatter `imageFit`).
 const fit = fitProp ?? imageFit;
-const brandName = brandBySlug(brand)?.name ?? brand;
+const brandName = brandBySlug(brand)?.name ?? '';
 const categoryInfo = categoryBySlug(category);
 const categoryName = categoryInfo?.name ?? category;
 const subName = subcategoryBySlug(category, subcategory)?.name ?? '';
 // Pie en una línea: la subcategoría dice más que la categoría (que ya filtra el segmentado).
 const footLabel = subName || (categoryInfo?.shortName ?? categoryName);
+// Etiqueta superior: la marca; los productos sin marca muestran su categoría.
+const badge = brandName || (categoryInfo?.shortName ?? categoryName);
 const href = `/productos/${product.id}`;
 
 /** Misma normalización que el buscador del catálogo: minúsculas, sin tildes, espacios colapsados. */
@@ -53,7 +55,7 @@ const eager = typeof index === 'number' && index < 6;
 <article
   class="card card--interactive reveal product-card"
   data-product
-  data-brand={brand}
+  data-brand={brand ?? ''}
   data-category={category}
   data-subcategory={subcategory}
   data-search={search}
@@ -72,7 +74,7 @@ const eager = typeof index === 'number' && index < 6;
   </a>
   <div class="product-card__body">
     <div class="product-card__meta">
-      <span class="badge">{brandName}</span>
+      <span class="badge">{badge}</span>
     </div>
     <h3><a href={href}>{title}</a></h3>
     {sku && <span class="product-card__sku">Ref. <span class="mono">{sku}</span></span>}
@@ -109,13 +111,22 @@ const eager = typeof index === 'number' && index < 6;
     outline: none;
   }
 
+  /*
+    Marco de proporción fija: la foto va en absoluto para que su tamaño real
+    nunca estire el marco (antes, una foto vertical hacía la tarjeta más alta).
+  */
   .product-card__media {
+    position: relative;
     display: block;
+    flex: none;
     aspect-ratio: 4 / 3;
+    overflow: hidden;
     background: var(--color-surface-2);
   }
 
   .product-card__media img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;

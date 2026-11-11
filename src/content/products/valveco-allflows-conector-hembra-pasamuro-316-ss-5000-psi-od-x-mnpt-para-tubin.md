@@ -10,7 +10,7 @@ sku: 'FHP'
 order: 647
 specs:
   - { label: 'Medidas', value: '1/8" OD x 1/8" FNPT, 1/4" OD x 1/8" FNPT, 1/4" OD x 1/4" FNPT, 3/8" OD x 1/4" FNPT, 1/2" OD x 3/8" FNPT, 1/2" OD x 1/2" FNPT' }
-tags: ['allflows', 'abac', 'alta presión', 'ferrule fittings', 'inoxidable', 'swagelok fittings', 'swg-lok', 'FHP']
+tags: ['allflows', 'abac', 'alta presión', 'ferrule fittings', 'inoxidable', 'swg-lok', 'FHP']
 ---
 
 ## Descripción

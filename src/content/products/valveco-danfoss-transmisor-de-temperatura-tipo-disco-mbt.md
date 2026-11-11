@@ -3,7 +3,7 @@ title: 'DANFOSS, Transmisor de Temperatura Tipo Disco MBT'
 brand: valveco
 category: instrumentacion
 subcategory: temperatura
-summary: 'MBT – TRANSMISORES DE TEMPERATURA TIPO DISCO, DANFOSS'
+summary: 'Transmisores de temperatura tipo disco MBT de Danfoss, de 2 hilos con salida de 4-20 mA, para entradas PT100, PT1000 o termopar.'
 image: '/images/valveco/danfoss-transmisor-de-temperatura-tipo-disco-mbt.jpg'
 imageFit: contain
 order: 622

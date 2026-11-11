@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/productos/swagelok-termometros", "destination": "/productos/termometros-bimetalicos", "permanent": true },
+    { "source": "/productos/ferreinstrumentos-racores-conectores-tipo-swagelok", "destination": "/productos/racores-de-compresion-para-tubing", "permanent": true },
+    { "source": "/productos/swagelok-:slug", "destination": "/productos/:slug", "permanent": true },
+    { "source": "/productos/ferreinstrumentos-:slug", "destination": "/productos/:slug", "permanent": true }
+  ]
+}

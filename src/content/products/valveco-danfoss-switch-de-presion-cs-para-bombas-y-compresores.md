@@ -3,7 +3,7 @@ title: 'DANFOSS, Switch de presión CS-Para Bombas y Compresores'
 brand: valveco
 category: instrumentacion
 subcategory: presostatos
-summary: 'CS – PRESOSTATO PARA BOMBAS Y COMPRESORES DANFOSS'
+summary: 'Presostato Danfoss CS para arrancar y parar bombas y compresores, con contacto tripolar y vida mecánica de un millón de operaciones.'
 image: '/images/valveco/danfoss-switch-de-presion-cs-para-bombas-y-compresores.jpg'
 imageFit: contain
 order: 613

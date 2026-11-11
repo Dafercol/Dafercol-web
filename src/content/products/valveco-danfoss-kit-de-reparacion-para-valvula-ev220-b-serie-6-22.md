@@ -3,7 +3,7 @@ title: 'DANFOSS, Kit de reparación para válvula EV220 B - SERIE 6 - 22'
 brand: valveco
 category: mantenimiento
 subcategory: repuestos
-summary: 'Kit de reparación para válvulas EV220 B - SERIE 6 - 22, DANFOSS'
+summary: 'Kit de reparación Danfoss para válvulas solenoides EV220B serie 6-22.'
 image: '/images/valveco/danfoss-kit-de-reparacion-para-valvula-ev220-b-serie-6-22.jpg'
 imageFit: contain
 order: 685

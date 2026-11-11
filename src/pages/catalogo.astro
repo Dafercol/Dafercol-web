@@ -33,9 +33,9 @@ const meta = pdfExists
   ? ['PDF', pdfPages ? `${pdfPages} páginas` : '', 'Tamaño A4'].filter(Boolean)
   : ['PDF', 'Referencias por marca y categoría'];
 const features = [
-  `${productCount} productos en ${categories.length} líneas, con foto y datos clave`,
-  'Índice y marcadores para saltar a cada línea y tipo de producto',
-  'Cada producto enlaza a su ficha en la web',
+  `Los productos destacados de las ${categories.length} líneas, con foto y datos clave`,
+  'Cada producto enlaza a su ficha en la web, con especificaciones y cotización',
+  `El catálogo completo, con ${productCount} productos, está en la web`,
   pdfDate ? `Actualizado el ${pdfDate}` : '',
 ].filter(Boolean);
 const downloadName = `Catalogo-DAFERCOL-${year}.pdf`;

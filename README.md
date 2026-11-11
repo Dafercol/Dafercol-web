@@ -38,6 +38,8 @@ cualquier hosting de archivos estáticos.
 ```
 src/
   data/site.ts            Datos de la empresa, navegación, marcas y categorías
+  data/seo-categorias.ts  Título, descripción y texto de cada página de línea y de tipo
+  lib/seo.ts              Reglas de SEO de las fichas (fabricante, título y descripción)
   content.config.ts       Esquema de la colección de productos
   content/products/*.md   Un archivo por producto (define la URL)
   layouts/Layout.astro    HTML base, SEO (meta, Open Graph, JSON-LD), header, footer y WhatsApp
@@ -46,6 +48,8 @@ src/
     index.astro           Inicio
     productos/index.astro Catálogo web con filtros por marca, categoría y búsqueda
     productos/[slug].astro Detalle de producto con especificaciones y relacionados
+    productos/[categoria]/ Páginas de línea (/productos/valvulas/) y de tipo
+                          (/productos/valvulas/bola/), estáticas e indexables
     quienes-somos.astro
     contacto.astro        Formulario que abre WhatsApp con el mensaje listo
     catalogo.astro        Descarga del catálogo PDF
@@ -66,9 +70,9 @@ scripts/marca/            Generadores de logos, íconos e imagen para redes
 La identidad sale del **Manual de Marca DAFERCOL v1.0** (`assets/marca/`). Lo esencial:
 
 - **Color.** Azul DAFERCOL `#163B6E` para nombre, títulos y textos principales; azul noche
-  `#0E2548` para fondos en negativo (film del inicio, heros, pie); rojo manómetro `#D2232A`
-  solo como acento puntual (raya de las etiquetas, página actual, progreso), nunca en
-  botones ni fondos; aceros `#D3D9E0` `#9AA6B2` `#5F6E7E` y gris texto `#6B7A8B`.
+  `#0E2548` para fondos en negativo (film del inicio, heros, pie); aceros `#D3D9E0` `#9AA6B2` `#5F6E7E`
+  como acento puntual (raya de las etiquetas, página actual, progreso); rojo manómetro
+  `#D2232A` solo en el logo y en avisos de error; gris texto `#6B7A8B`.
 - **Tipografía.** Archivo 900 expandida (118 %) para titulares grandes; Barlow para todo
   lo demás. Etiquetas en mayúsculas espaciadas. Ambas alojadas en `public/fonts/`.
 - **Logo.** Componente `Logo.astro`: versión a color sobre blanco o gris muy claro,
@@ -89,19 +93,19 @@ reemplazar los derivados de `public/marca/`.
 
 ## Cómo agregar un producto
 
-1. Crea un archivo en `src/content/products/`, por ejemplo `swagelok-valvula-aguja.md`.
-   El nombre del archivo será la URL: `/productos/swagelok-valvula-aguja`.
+1. Crea un archivo en `src/content/products/`, por ejemplo `valvula-de-aguja.md`.
+   El nombre del archivo será la URL: `/productos/valvula-de-aguja`.
 2. Copia el encabezado de otro producto y ajusta los campos:
 
 ```md
 ---
-title: 'Válvula de aguja Swagelok'
-brand: swagelok            # swagelok | valveco | comfit | ferreinstrumentos
+title: 'Válvula de aguja'
+brand: valveco             # opcional: valveco | comfit. Sin marca, se muestra por categoría
 category: valvulas         # valvulas | racores | tuberia | instrumentacion | reguladores |
                            # muestreo | herramientas | mantenimiento
 subcategory: aguja         # una de las subcategorías de esa categoría (ver `categories` en site.ts)
 summary: 'Texto corto para la tarjeta (máximo 220 caracteres).'
-image: '/images/productos/swagelok-valvula-aguja.jpg'   # opcional
+image: '/images/productos/valvula-de-aguja.jpg'   # opcional
 imageFit: contain          # contain = foto recortada sobre fondo blanco; cover (defecto) = foto a sangre
 featured: true             # aparece en "Productos destacados" del inicio
 sku: 'SS-1RS4'             # opcional
@@ -116,8 +120,8 @@ Descripción larga en Markdown.
 ```
 
 3. Guarda la imagen en `public/images/productos/`. Si no hay imagen se usa un placeholder.
-   Las fotos de Ferreinstrumentos y Swagelok viven en `public/images/ferreinstrumentos/` y
-   `public/images/swagelok/`; cada carpeta tiene un `indice.csv` con el origen de cada imagen.
+   El origen de las fotos de los productos sin marca queda registrado en
+   `assets/origen-imagenes/`: el sitio no lo publica, pero sí se ve en el repositorio.
 
 Para agregar una marca, una categoría o una subcategoría, edita los arreglos `brands` y
 `categories` en `src/data/site.ts`; el esquema de productos y los filtros se actualizan solos.
@@ -128,20 +132,46 @@ El catálogo acepta enlaces con `?categoria=valvulas&sub=solenoides&marca=valvec
 Los enlaces viejos a `?categoria=uniones-de-golpe` y `?categoria=accesorios-tuberia` siguen
 funcionando: llevan a la categoría y subcategoría nuevas (`legacyCategories` en `site.ts`).
 
+## SEO
+
+- **Fichas de producto.** El `<title>` y la meta descripción se arman en `src/lib/seo.ts`:
+  título de hasta 60 caracteres con el tipo de producto primero y el fabricante después, y
+  descripción de 100 a 160 caracteres con el resumen, dos datos clave y el llamado a
+  cotizar. El `h1` visible es el `title` del archivo. Los datos estructurados declaran el
+  fabricante real (Danfoss, ASCO, Comfit…), que se deduce del inicio del título; si se
+  agrega un fabricante nuevo, hay que sumarlo a `MAKERS` en ese archivo.
+- **Líneas y tipos.** `/productos/valvulas/` y `/productos/valvulas/bola/` son páginas
+  estáticas con texto propio (`src/data/seo-categorias.ts`), listado completo, migas y
+  datos estructurados. Son las que pueden posicionar en búsquedas genéricas; el catálogo
+  con filtros (`/productos/?categoria=…`) tiene una sola URL canónica y no compite con
+  ellas. Un tipo nuevo sin texto genera su página igual, con un texto básico, y la
+  construcción avisa.
+- **Resúmenes.** El `summary` de cada producto alimenta la tarjeta, la ficha y la meta
+  descripción: conviene escribirlo en minúsculas normales, con el tipo de producto y un
+  dato concreto, y sin copiar el texto del fabricante.
+
 ## Catálogo PDF
 
-`npm run catalogo` arma el PDF descargable desde los mismos datos del sitio: portada,
-índice con números de página, una sección por categoría y subcategoría, tarjetas de
-producto con foto, datos clave y enlace a su ficha, y contraportada de contacto.
-El script vive en `scripts/catalogo/build.mjs` y necesita Google Chrome (o
-`CHROME_PATH=/ruta/al/chrome`). Tarda unos 10 segundos.
+`npm run catalogo` arma el PDF descargable desde los mismos datos del sitio. Es un
+catálogo comercial de 8 páginas, no el listado completo: portada con el índice de líneas,
+tres páginas de una línea (un producto destacado en grande y seis tarjetas), tres páginas
+de dos líneas (tres o cuatro tarjetas cada una) y contraportada de contacto. Cada producto
+enlaza a su ficha en la web y cada línea, a su listado completo.
 
-- **Peso.** Las fotos se reducen a miniaturas JPEG de 240 px (≈ 200 ppp al tamaño
-  impreso) y Chrome las incrusta sin recomprimir. El texto es vectorial y las tipografías
-  de la marca (Archivo y Barlow, licencia OFL, de `public/fonts/`) se incrustan solo con
-  los caracteres usados.
-- **Navegación.** El índice y las tarjetas son enlaces; el PDF trae marcadores por
-  categoría y subcategoría en el panel lateral del lector.
+- **Selección.** Qué productos salen, en qué página y con qué foto de fondo se decide en
+  `scripts/catalogo/seleccion.mjs`. Para cambiar un producto basta con reemplazar su
+  identificador (el nombre de su archivo, sin `.md`). El script se detiene si un
+  identificador no existe, está repetido o no es de esa línea. La selección actual se hizo
+  por criterio comercial, sin datos de ventas, y solo con fotos donde no se ve una marca
+  que el sitio no nombra.
+- **Fotos.** Se recorta el margen blanco para que la pieza llene el marco y se reducen al
+  tamaño de impresión, sin ampliar nunca. El texto es vectorial y las tipografías de la
+  marca (Archivo y Barlow, licencia OFL, de `public/fonts/`) se incrustan solo con los
+  caracteres usados.
+
+El script vive en `scripts/catalogo/build.mjs` y necesita Google Chrome (o
+`CHROME_PATH=/ruta/al/chrome`). Tarda unos 5 segundos.
+
 - **Contacto.** Mientras `whatsappIsPlaceholder` sea verdadero, el PDF muestra web, correo
   y horario, y el botón de WhatsApp lleva a `/contacto`. Con los datos reales, vuelve a
   generar el PDF.
