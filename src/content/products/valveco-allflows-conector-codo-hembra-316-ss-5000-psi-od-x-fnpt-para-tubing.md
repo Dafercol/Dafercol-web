@@ -9,7 +9,7 @@ imageFit: contain
 order: 641
 specs:
   - { label: 'Medidas', value: '1/8" OD x 1/8" FNPT, 1/8" OD x 1/4" FNPT, 3/16" OD x 1/8" FNPT, 1/4" OD x 1/8" FNPT, 1/4" OD x 1/4" FNPT, 5/16" OD x 1/4" FNPT, 3/8" OD x 1/8" FNPT, 3/8" OD x 1/4" FNPT, 3/8" OD x 3/8" FNPT, 1/2" OD x 1/4" FNPT, 1/2" OD x 3/8" FNPT, 1/2" OD x 1/2" FNPT, 5/8" OD x 1/2" FNPT, 3/4" OD x 1/2" FNPT y 1 más' }
-tags: ['allflows', 'abac', 'alta presión', 'ferrule fittings', 'inoxidable', 'swagelok fittings', 'swg-lok']
+tags: ['allflows', 'abac', 'alta presión', 'ferrule fittings', 'inoxidable', 'swg-lok']
 ---
 
 ## Descripción

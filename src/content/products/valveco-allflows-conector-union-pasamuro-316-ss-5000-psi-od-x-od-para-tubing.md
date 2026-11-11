@@ -10,7 +10,7 @@ sku: 'UTP'
 order: 659
 specs:
   - { label: 'Medidas', value: '1/8" OD, 3/16" OD, 1/4" OD, 5/16" OD, 3/8" OD, 1/2" OD, 5/8" OD, 3/4" OD' }
-tags: ['allflows', 'abac', 'alta presión', 'ferrule fittings', 'inoxidable', 'swagelok fittings', 'swg-lok', 'UTP']
+tags: ['allflows', 'abac', 'alta presión', 'ferrule fittings', 'inoxidable', 'swg-lok', 'UTP']
 ---
 
 ## Descripción

@@ -9,7 +9,7 @@ imageFit: contain
 order: 644
 specs:
   - { label: 'Medidas', value: '1/8" OD x OD x OD, 1/4" OD x OD x OD, 3/8" OD x OD x OD, 1/2" OD x OD xOD, 5/8" OD x OD x OD, 3/4" OD x OD x OD, 1" OD x OD xOD' }
-tags: ['allflows', 'abac', 'alta presión', 'inoxidable', 'swagelok fittings', 'swg-lok', 'FCU', 'FCU-7']
+tags: ['allflows', 'abac', 'alta presión', 'inoxidable', 'swg-lok', 'FCU', 'FCU-7']
 ---
 
 ## Descripción

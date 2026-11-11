@@ -209,7 +209,7 @@ const isActive = (href: string) => (href === '/' ? current === '/' : current.sta
     --color-brand-fill: #ffffff;
     --color-brand-fill-hover: #e4eaf4;
     --color-on-brand: var(--brand-noche);
-    --color-accent: #e0353c;
+    --color-accent: var(--acero-claro);
     --color-focus: #8fb0e6;
     --shadow-rgb: 3 10 22;
     --glass-fallback: rgba(14, 37, 72, 0.94);
@@ -305,7 +305,7 @@ const isActive = (href: string) => (href === '/' ? current === '/' : current.sta
     border-color: var(--color-border-strong);
   }
 
-  /* Página actual: la aguja roja del manómetro marca dónde estás. */
+  /* Página actual: una raya de acero marca dónde estás. */
   .nav a[aria-current='page'] {
     color: var(--color-heading);
     border-color: var(--color-accent);

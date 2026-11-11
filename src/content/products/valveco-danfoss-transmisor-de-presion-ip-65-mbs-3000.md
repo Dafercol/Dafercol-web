@@ -3,7 +3,7 @@ title: 'DANFOSS, Transmisor de Presión IP 65 MBS 3000'
 brand: valveco
 category: instrumentacion
 subcategory: presion
-summary: 'MBS 3000 – TRANSMISOR DE PRESIÓN IP 65, DANFOSS'
+summary: 'Transmisor de presión compacto MBS 3000 de Danfoss, con protección IP 65, para aplicaciones industriales.'
 image: '/images/valveco/danfoss-transmisor-de-presion-ip-65-mbs-3000.jpg'
 imageFit: contain
 sku: 'MBS 3000'

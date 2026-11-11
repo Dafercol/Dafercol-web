@@ -9,7 +9,7 @@ imageFit: cover
 order: 651
 specs:
   - { label: 'Medidas', value: '1/16" OD, 1/8" OD, 3/16" OD, 1/4" OD, 5/16" OD, 3/8" OD, 1/2" OD, 5/8" OD, 3/4" OD, 1" OD' }
-tags: ['allflows', 'abac', 'alta presión', 'ferrule fittings', 'inoxidable', 'swagelok fittings', 'swg-lok']
+tags: ['allflows', 'abac', 'alta presión', 'ferrule fittings', 'inoxidable', 'swg-lok']
 ---
 
 ## Descripción

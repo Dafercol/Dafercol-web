@@ -33,7 +33,7 @@ const total = products.length;
 
 <Layout
   title="Productos"
-  description="Catálogo DAFERCOL: válvulas, racores, tubería, instrumentación, reguladores, filtración, herramientas y repuestos Swagelok, Valveco, Comfit y Ferreinstrumentos. Filtra por categoría, tipo y marca y cotiza por WhatsApp."
+  description="Catálogo DAFERCOL: válvulas, racores, tubería, instrumentación, reguladores, filtración, herramientas y repuestos para la industria. Filtra por categoría, tipo y marca y cotiza por WhatsApp."
 >
   <!-- Precarga del hero (elemento LCP): mismo srcset/sizes que el <img> para que se reutilice. -->
   <Fragment slot="head">
@@ -78,17 +78,24 @@ const total = products.length;
       aria-label="Filtrar productos"
     >
       <div class="container catalog-bar__inner">
+        <!-- Rótulos del panel lateral (escritorio); los <legend> ya nombran cada grupo para lectores de pantalla. -->
+        <p class="side-title" aria-hidden="true">Categorías</p>
         <fieldset class="seg catalog-seg">
           <legend class="visually-hidden">Categoría</legend>
           <label class="seg__opt">
             <input type="radio" name="categoria" value="" checked />
-            <span class="seg__btn">Todas</span>
+            <span class="seg__btn">Todas<span class="seg__n mono" data-n>{total}</span></span>
           </label>
           {
             categories.map((c) => (
               <label class="seg__opt">
                 <input type="radio" name="categoria" value={c.slug} />
-                <span class="seg__btn">{c.shortName}</span>
+                <span class="seg__btn">
+                  {c.shortName}
+                  <span class="seg__n mono" data-n>
+                    {countBy('category', c.slug)}
+                  </span>
+                </span>
               </label>
             ))
           }
@@ -98,7 +105,8 @@ const total = products.length;
           Segundo nivel del árbol: solo se ve con una categoría elegida y solo
           muestra las subcategorías de esa categoría (los slugs se repiten entre
           categorías, por eso cada opción lleva data-cat). Los números se
-          recalculan con la marca y la búsqueda activas.
+          recalculan con la marca y la búsqueda activas. En escritorio el script
+          lo anida bajo la categoría elegida dentro del panel lateral.
         -->
         <fieldset class="subcats" id="subcats" hidden>
           <legend class="visually-hidden">Tipo de producto</legend>
@@ -124,6 +132,7 @@ const total = products.length;
         </fieldset>
 
         <div class="catalog-bar__row">
+          <p class="side-title" aria-hidden="true">Marcas</p>
           <fieldset class="chips">
             <legend class="visually-hidden">Marca</legend>
             {
@@ -337,6 +346,17 @@ const total = products.length;
     const sheet = document.getElementById('filters-sheet') as HTMLDialogElement | null;
     const subcats = document.getElementById('subcats')!;
     const subLabels = Array.from(subcats.querySelectorAll<HTMLLabelElement>('label[data-cat]'));
+    const seg = form.querySelector<HTMLElement>('.catalog-seg')!;
+    const catLabels = Array.from(seg.querySelectorAll<HTMLLabelElement>(':scope > .seg__opt'));
+    // Escritorio: los filtros son un panel lateral y los tipos van anidados bajo su categoría.
+    const sidebar = matchMedia('(min-width: 1024px)');
+
+    /** Coloca la lista de tipos: bajo la categoría elegida (panel lateral) o tras el segmentado (barra). */
+    const placeSubcats = () => {
+      const current = seg.querySelector<HTMLInputElement>(':scope > .seg__opt > input:checked');
+      const anchor = sidebar.matches && current?.value ? current.parentElement! : seg;
+      if (subcats.previousElementSibling !== anchor) anchor.after(subcats);
+    };
 
     /** Marca la opción `sub` de la categoría `cat` ('' = Todos) en un formulario. */
     const checkSub = (root: HTMLElement, name: string, cat: string, sub: string) => {
@@ -371,9 +391,25 @@ const total = products.length;
 
     /** Fila de subcategorías: visible solo con categoría; los números siguen a la marca y la búsqueda. */
     const renderSubcats = (s: State) => {
-      subcats.hidden = !s.categoria;
-      if (!s.categoria) return;
       const terms = norm(s.q).split(' ').filter(Boolean);
+      // Números de cada categoría con la marca y la búsqueda activas.
+      const perCat: Record<string, number> = {};
+      let all = 0;
+      cards.forEach((c) => {
+        if (!matches(c, { ...s, categoria: '', sub: '' }, terms)) return;
+        all++;
+        perCat[c.dataset.category ?? ''] = (perCat[c.dataset.category ?? ''] ?? 0) + 1;
+      });
+      catLabels.forEach((l) => {
+        const v = l.querySelector('input')!.value;
+        const k = v ? (perCat[v] ?? 0) : all;
+        l.querySelector('[data-n]')!.textContent = String(k);
+        l.classList.toggle('is-empty', k === 0);
+      });
+
+      subcats.hidden = !s.categoria;
+      placeSubcats();
+      if (!s.categoria) return;
       const n: Record<string, number> = {};
       cards.forEach((c) => {
         if (matches(c, { ...s, sub: '' }, terms)) n[c.dataset.subcategory ?? ''] = (n[c.dataset.subcategory ?? ''] ?? 0) + 1;
@@ -541,6 +577,7 @@ const total = products.length;
       }
     });
     empty.querySelector('[data-clear]')!.addEventListener('click', () => form.reset());
+    sidebar.addEventListener('change', placeSubcats);
 
     // 5) Estado pegado: sentinel + IntersectionObserver (nunca scroll + getBoundingClientRect).
     //    El margen inferior enorme hace que "no interseca" signifique solo "quedó por encima del header",
@@ -919,6 +956,12 @@ const total = products.length;
     display: none;
   }
 
+  /* Rótulos y números del panel lateral: solo existen en escritorio. */
+  .side-title,
+  .seg__n {
+    display: none;
+  }
+
   /* Distintivo con el número de filtros activos. */
   .filters-open__count {
     display: inline-grid;
@@ -1090,8 +1133,8 @@ const total = products.length;
     margin-top: var(--space-5);
   }
 
-  /* Escritorio: los chips activos duplican el estado del segmentado y las marcas. */
-  @media (min-width: 901px) {
+  /* Escritorio: los chips activos duplican el estado del panel lateral. */
+  @media (min-width: 1024px) {
     .catalog-applied {
       display: none;
     }
@@ -1231,8 +1274,8 @@ const total = products.length;
     min-height: 48px;
   }
 
-  /* ---- Móvil ---- */
-  @media (max-width: 900px) {
+  /* ---- Móvil y tableta: barra pegada compacta + hoja de filtros ---- */
+  @media (max-width: 1023px) {
     :global(html:has(.catalog-bar)) {
       scroll-padding-top: calc(var(--header-h) + 100px);
     }
@@ -1346,6 +1389,185 @@ const total = products.length;
 
     .catalog-grid > li {
       animation-delay: calc(min(var(--i, 0), 6) * 30ms);
+    }
+  }
+
+  /*
+    ---- Escritorio: panel lateral ----
+    Los filtros dejan de ser una barra sobre los productos (ocupaba hasta un
+    tercio de la pantalla al quedar pegada) y pasan a una columna fija a la
+    izquierda. La rejilla usa toda la altura. Mismo formulario y mismos campos:
+    solo cambia la disposición.
+  */
+  @media (min-width: 1024px) {
+    :global(html:has(.catalog-bar)) {
+      scroll-padding-top: calc(var(--header-h) + var(--space-5));
+    }
+
+    .catalog-section {
+      display: grid;
+      grid-template-columns: 232px minmax(0, 1fr);
+      column-gap: var(--space-7);
+      align-items: start;
+      width: min(100% - var(--gutter) * 2, var(--container));
+      margin-inline: auto;
+      padding-top: var(--space-6);
+    }
+
+    #catalog-sentinel {
+      grid-column: 1 / -1;
+    }
+
+    .catalog-bar,
+    .catalog-bar.is-stuck,
+    .catalog-bar:not(.is-stuck) {
+      top: calc(var(--header-h) + var(--space-5));
+      z-index: 1;
+      max-height: calc(100dvh - var(--header-h) - var(--space-5) * 2);
+      margin: 0;
+      padding: 2px 6px 2px 2px; /* aire para los anillos de foco y la barra de desplazamiento */
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      border: 0;
+      background: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+    }
+
+    .catalog-bar__inner,
+    .catalog__results {
+      width: auto;
+      margin-inline: 0;
+    }
+
+    .catalog-bar__inner {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: var(--space-2);
+    }
+
+    /* La fila se disuelve: la búsqueda sube al principio y las marcas quedan al final. */
+    .catalog-bar__row {
+      display: contents;
+    }
+
+    .search {
+      order: -1;
+      flex: none;
+      min-width: 0;
+      max-width: none;
+      margin-bottom: var(--space-3);
+    }
+
+    .side-title {
+      display: block;
+      margin: 0;
+      padding: 0 var(--space-3);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-caps);
+      text-transform: uppercase;
+      color: var(--color-text-2);
+    }
+
+    .catalog-bar__row .side-title {
+      margin-top: var(--space-4);
+    }
+
+    /* Categorías: lista vertical con su número a la derecha. */
+    .catalog-seg {
+      display: flex;
+      flex: none;
+      flex-direction: column;
+      gap: 2px;
+      padding: 0;
+      overflow: visible;
+      background: none;
+      border-radius: 0;
+    }
+
+    .seg__opt {
+      display: flex;
+    }
+
+    .seg__opt .seg__btn {
+      flex: 1;
+      justify-content: space-between;
+      gap: var(--space-3);
+      min-height: 36px;
+      padding: 0 var(--space-3);
+      color: var(--color-text);
+    }
+
+    .seg__n {
+      display: inline;
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-2);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .seg__opt:hover .seg__btn {
+      background: var(--color-surface-2);
+    }
+
+    .seg__opt input:checked + .seg__btn {
+      background: var(--color-primary-soft);
+      box-shadow: none;
+    }
+
+    .seg__opt.is-empty .seg__btn {
+      opacity: 0.45;
+    }
+
+    /* Tipos: anidados bajo la categoría elegida, con una guía vertical. */
+    .subcats {
+      flex: none;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: 1px;
+      margin: 2px 0 var(--space-2) var(--space-4);
+      padding-left: var(--space-2);
+      border-left: 1px solid var(--color-border-strong);
+    }
+
+    .subcats .chip-opt {
+      display: flex;
+    }
+
+    .subcats .chip {
+      flex: 1;
+      justify-content: space-between;
+      gap: var(--space-3);
+      min-height: 32px;
+      padding: 4px var(--space-3);
+      border: 0;
+      background: none;
+      color: var(--color-text-2);
+      font-weight: var(--weight-regular, 400);
+      line-height: 1.25;
+    }
+
+    .subcats .chip-opt:hover .chip {
+      background: var(--color-surface-2);
+      color: var(--color-heading);
+    }
+
+    .subcats input:checked + .chip {
+      background: none;
+      color: var(--color-heading);
+      font-weight: var(--weight-semibold);
+    }
+
+    .subcats input:checked + .chip .chip__n {
+      opacity: 1;
+    }
+
+    .chips {
+      padding: var(--space-1) var(--space-2) 0;
     }
   }
 

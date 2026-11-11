@@ -7,13 +7,14 @@ const categorySlugs = categories.map((c) => c.slug) as [string, ...string[]];
 
 /**
  * Cada producto es un archivo Markdown en src/content/products/.
- * El nombre del archivo define la URL: swagelok-racor-tubo.md -> /productos/swagelok-racor-tubo
+ * El nombre del archivo define la URL: racores-para-tubo.md -> /productos/racores-para-tubo
  */
 const products = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/products' }),
   schema: z.object({
     title: z.string(),
-    brand: z.enum(brandSlugs),
+    /** Opcional: sin marca, el producto se presenta solo por su categoría. */
+    brand: z.enum(brandSlugs).optional(),
     category: z.enum(categorySlugs),
     subcategory: z.string(),
     summary: z.string().max(220),

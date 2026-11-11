@@ -10,7 +10,7 @@ sku: 'TMT'
 order: 656
 specs:
   - { label: 'Medidas', value: '1/8" OD x 1/8" MNPT, 3/16" OD x 1/8" MNPT, 1/4" OD x 1/8" MNPT, 1/4" OD x 1/4" MNPT, 5/16" OD x 1/8" MNPT, 3/8" OD x 1/4" MNPT, 1/2" OD x 3/8" MNPT, 1/2" OD x 1/2" MNPT, 3/4" OD x 3/4" MNPT' }
-tags: ['allflows', 'abac', 'alta presión', 'ferrule fittings', 'inoxidable', 'swagelok fittings', 'swg-lok', 'TMT']
+tags: ['allflows', 'abac', 'alta presión', 'ferrule fittings', 'inoxidable', 'swg-lok', 'TMT']
 ---
 
 ## Descripción

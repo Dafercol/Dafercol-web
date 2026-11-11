@@ -16,7 +16,7 @@ export const site = {
   /** Eslogan oficial del manual (versión horizontal con eslogan, tarjeta de presentación). */
   slogan: 'Racores, válvulas y accesorios para alta presión y temperatura',
   description:
-    'Distribuidor industrial en Colombia de racores, válvulas, tubería e instrumentación Swagelok, Valveco, Comfit y Ferreinstrumentos. Asesoría técnica y cotización por WhatsApp.',
+    'Distribuidor industrial en Colombia de racores, válvulas, tubería e instrumentación para alta presión y temperatura. Asesoría técnica y cotización por WhatsApp.',
   url: SITE_URL,
   // WhatsApp confirmado por el cliente (3-nov-2026); el manual usa el mismo número
   // como teléfono en la tarjeta y la firma. Todos los CTAs de cotización pasan por
@@ -66,14 +66,11 @@ export interface Brand {
   website?: string;
 }
 
+/**
+ * Marcas que el sitio nombra. Un producto sin `brand` se muestra solo por su
+ * categoría: no aparece en el filtro de marcas ni lleva etiqueta de marca.
+ */
 export const brands: Brand[] = [
-  {
-    slug: 'swagelok',
-    name: 'Swagelok',
-    description:
-      'Racores para tubo, válvulas, reguladores, mangueras, filtros, instrumentación y herramientas para sistemas de fluidos.',
-    website: 'https://www.swagelok.com',
-  },
   {
     slug: 'valveco',
     name: 'Valveco',
@@ -84,13 +81,6 @@ export const brands: Brand[] = [
     slug: 'comfit',
     name: 'Comfit',
     description: 'Válvulas de instrumentación, manifolds y monobridas, racores para tubing y accesorios para tubería.',
-  },
-  {
-    slug: 'ferreinstrumentos',
-    name: 'Ferreinstrumentos',
-    description:
-      'Uniones de golpe, válvulas para oil & gas, accesorios de tubería, instrumentación y herramientas antichispa.',
-    website: 'https://www.ferreinstrumentos.com',
   },
 ];
 
@@ -230,7 +220,7 @@ export const legacyCategories: Record<string, { category: string; subcategory: s
   'accesorios-tuberia': { category: 'tuberia', subcategory: 'accesorios' },
 };
 
-export const brandBySlug = (slug: string) => brands.find((b) => b.slug === slug);
+export const brandBySlug = (slug?: string) => brands.find((b) => b.slug === slug);
 export const categoryBySlug = (slug: string) => categories.find((c) => c.slug === slug);
 export const subcategoryBySlug = (category: string, sub: string) =>
   categoryBySlug(category)?.subcategories.find((s) => s.slug === sub);

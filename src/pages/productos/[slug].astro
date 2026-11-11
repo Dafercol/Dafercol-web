@@ -24,7 +24,9 @@ const { title, summary, brand, category, subcategory, image, imageFit, sku, spec
 const brandInfo = brandBySlug(brand);
 const categoryInfo = categoryBySlug(category);
 const subInfo = subcategoryBySlug(category, subcategory);
-const brandName = brandInfo?.name ?? brand;
+const brandName = brandInfo?.name ?? '';
+// Etiqueta de la ficha: la marca; los productos sin marca muestran su categoría.
+const badge = brandName || (categoryInfo?.shortName ?? category);
 
 const all = await getCollection('products');
 const others = all.filter((p) => p.id !== product.id);
@@ -46,7 +48,7 @@ const productUrl = new URL(`/productos/${product.id}`, site.url).toString();
  */
 const message = [
   'Hola DAFERCOL, quiero cotizar:',
-  `• ${title}${sku ? ` (Ref. ${sku})` : ''} — ${brandName}`,
+  `• ${title}${sku ? ` (Ref. ${sku})` : ''}${brandName ? ` — ${brandName}` : ''}`,
   'Cantidad: ',
   productUrl,
 ].join('\n');
@@ -60,7 +62,7 @@ const jsonLd = {
   description: summary,
   sku,
   image: new URL(imageSrc, site.url).toString(),
-  brand: { '@type': 'Brand', name: brandName },
+  ...(brandName ? { brand: { '@type': 'Brand', name: brandName } } : {}),
   category: [categoryInfo?.name ?? category, subInfo?.name].filter(Boolean).join(' > '),
   url: productUrl,
 };
@@ -93,7 +95,7 @@ const jsonLd = {
 
         <div class="product__info">
           <div class="product__meta">
-            <span class="badge">{brandName}</span>
+            <span class="badge">{badge}</span>
             {sku && <span class="product__sku">Ref. <span class="mono">{sku}</span></span>}
           </div>
           <h1>{title}</h1>

@@ -3,7 +3,7 @@ title: 'GENEBRE, Válvula reguladora reductora de presión para agua'
 brand: valveco
 category: reguladores
 subcategory: presion
-summary: 'Válvula reguladora reductora de presión para agua GENEBRE'
+summary: 'Válvula reductora de presión para agua de Genebre: mantiene estable la presión aguas abajo.'
 image: '/images/valveco/genebre-valvula-reguladora-reductora-de-presion-para-agua.jpg'
 imageFit: contain
 sku: 'Redux GE'

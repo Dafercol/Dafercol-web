@@ -3,7 +3,7 @@ title: 'ABAC, Válvula cheque Inoxidable roscado NPT 6000 PSI'
 brand: valveco
 category: valvulas
 subcategory: cheque
-summary: 'Válvula cheque Inoxidable roscado NPT 6000 PSI, ABAC'
+summary: 'Válvula cheque en acero inoxidable con rosca NPT para líneas de hasta 6000 psi: evita el retorno del fluido en instrumentación y proceso.'
 image: '/images/valveco/abac-valvula-cheque-inoxidable-roscado-npt-6000-psi.jpg'
 imageFit: contain
 sku: 'VRS'

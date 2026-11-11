@@ -35,7 +35,7 @@ h1{font-family:Archivo,sans-serif;font-weight:900;font-stretch:118%;font-size:52
 <img class="logo" src="${data('public/marca/logo-negativo-800.webp', 'image/webp')}" alt="">
 <div class="dash"></div>
 <h1>Racores, válvulas y accesorios para alta presión y temperatura.</h1>
-<p class="brands">Swagelok · Valveco · Comfit · Ferreinstrumentos</p>
+<p class="brands">Válvulas · Racores · Tubería · Instrumentación</p>
 <div class="cut"></div>
 </body></html>`;
 

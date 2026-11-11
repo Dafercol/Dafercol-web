@@ -3,14 +3,15 @@ title: 'ALLFLOWS, Conector recto macho 316 SS, 5000 PSI, OD x MNPT para tubing'
 brand: valveco
 category: racores
 subcategory: racores-para-tubo
-summary: 'Racor Recto Macho para Tubing 316SS: Conectividad de Alta Presión y Rendimiento Superior'
+summary: 'Racor recto macho para tubing en acero inoxidable 316, OD x MNPT, para líneas de hasta 5000 psi.'
 image: '/images/valveco/allflows-conector-recto-macho-316-ss-5000-psi-od-x-mnpt-para-tubing.png'
 imageFit: contain
 sku: 'RM'
 order: 650
+featured: true
 specs:
   - { label: 'Medidas', value: '1/16" OD x 1/16" MNPT, 1/16" OD x 1/8" MNPT, 1/8" OD x 1/16" MNPT, 1/8" OD x 1/8" MNPT, 1/8" OD x 1/4" MNPT, 3/16" OD x 1/8" MNPT, 3/16" OD x 1/4" MNPT, 1/4" OD x 1/8" MNPT, 1/4" OD x 1/4" MNPT, 1/4" OD x 3/8" MNPT, 1/4" OD x 1/2" MNPT, 5/16" OD x 1/8" MNPT, 5/16" OD x 1/4" MNPT, 3/8" OD x 1/8" MNPT y 15 más' }
-tags: ['allflows', 'abac', 'alta presión', 'ferrule fittings', 'inoxidable', 'swagelok fittings', 'swg-lok', 'RM']
+tags: ['allflows', 'abac', 'alta presión', 'ferrule fittings', 'inoxidable', 'swg-lok', 'RM']
 ---
 
 ## Descripción
